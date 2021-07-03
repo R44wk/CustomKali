@@ -1,0 +1,10 @@
+[Unit]
+Description=Script service
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart= /root/.config/polybar/laucnh.sh
+
+[Install]
+WantedBy=multi-user.target
