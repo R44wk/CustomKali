@@ -56,7 +56,7 @@ echo -e "\n=====================================================================
 read -p "Enter your username:~# " DANT
 
 echo -e "${BLUE}\n Upgrade Kali.  ${NC}"
-apt update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; updatedb
+apt update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb
 
 #Install NordVPN
 echo -e "${BLUE}\n Install NordVPN 嬨 " ${NC}
@@ -64,6 +64,7 @@ wget -O /home/$DANT/Downloads/nordvpn.deb https://repo.nordvpn.com/deb/nordvpn/d
 cd /home/$DANT/Downloads/
 apt install ./nordvpn.deb && apt update && apt install nordvpn
 rm /home/$DANT/Downloads/nordvpn.deb
+nordvpn set dns 1.1.1.1 8.8.8.8
 
 echo -e "${BLUE}\n Install OpenVPN. 嬨 ${NC}"
 apt install -y network-manager-openvpn
@@ -77,6 +78,9 @@ apt install -y network-manager-vpnc-gnome
 
 echo -e "${BLUE}\n Trensmission. 褐 ${NC}"
 apt install -y transmission
+
+echo -e "${BLUE}\n Feroxbuster. 褐 ${NC}"
+apt install -y feroxbuster
 
 echo -e "${BLUE}\n Keepass. 褐 ${NC}"
 apt install -y keepass2
@@ -163,6 +167,9 @@ dpkg -i /home/$DANT/Downloads/nessus.deb; rm /home/$DANT/Downloads/nessus.deb
 echo -e "${BLUE}\n Subfinder. 陋 ${NC}"
 apt install -y subfinder
 
+echo -e "${BLUE}\n Speddtest. 陋 ${NC}"
+apt install -y speedtest-cli
+
 echo -e "${BLUE}\n Install Tor. 﨩 ${NC}"
 apt install tor -y 
 systemctl start tor
@@ -200,6 +207,8 @@ pip3 install virtualenv
 echo -e "${BLUE}\n Install Go.  ${NC}"
 apt install -y golang
 
+echo -e "${BLUE}\n Install VLC.  ${NC}"
+apt install -y vlc
 
 echo -e "${BLUE}\n Install NSearch.  ${NC}"
 git cloner https://github.com/jtibaquira/nsearch.git /opt/NSearch
@@ -233,6 +242,13 @@ apt install -y bettercap
 echo -e "${YELLOW}\n Install Discover.  ${NC}"
 cd /opt; git clone https://github.com/leebaird/discover.git
 cd /opt/discover; chmod +x update.sh; ./update.sh
+
+#Install Proxmark3
+echo -e "${YELLOW}\n Install Proxmark3.  ${NC}"
+apt install git build-essential readline-common libreadline-dev gcc-arm-none-eabi libusb-0.1-4 libusb-dev libncurses-dev perl pkg-config libpcsclite-dev pcscd
+cd /opt; git clone https://github.com/Proxmark/proxmark3.git
+cd proxmark3
+make clean && make all
 
 #Creat directorys
 mkdir /opt/Tools
@@ -303,6 +319,9 @@ cd /opt/Tools/$WIFI/wirespay; chmod +x wirespy.sh
 git clone https://github.com/vanhoefm/krackattacks-scripts.git krackattacks
 
 git clone https://github.com/Telefonica/HomePWN.git
+
+git clone https://github.com/hash3liZer/WiFiBroot.git
+
 
 }
 
@@ -492,7 +511,10 @@ Osint(){
 
 echo -e "${YELLOW}\n Download Tools OSINT ${NC}"
 cd  /opt/Tools/$OSINT/
+
 git clone https://github.com/stark0de/nginxpwner.git
+git clone https://github.com/six2dez/reconftw.git
+git clone https://github.com/thewhiteh4t/FinalRecon.git
 git clone https://github.com/smackerdodi/403bypasser.git
 git clone https://github.com/sense-of-security/ADRecon.git
 git clone https://github.com/1N3/BlackWidow.git
@@ -539,6 +561,21 @@ git clone https://github.com/gocaio/goca.git
 git clone https://github.com/liamg/furious.git
 git clone https://github.com/iojw/socialscan.git
 }
+
+App(){
+
+echo -e "${YELLOW}\n Download Tools AppVulnerability ${NC}"
+cd  /opt/Tools/$APP/
+
+git clone https://github.com/s0md3v/XSStrike.git
+git clone https://github.com/almandin/fuxploider.git
+
+
+
+}
+
+
+
 Banner() {
 
 echo -e "\n\n${BLUE}  ██╗  ██╗ █████╗ ██╗     ██╗       ██████╗██╗   ██╗███████╗████████╗ ██████╗ ███╗   ███╗${NC}"
@@ -575,6 +612,8 @@ sleep 2
 Social
 sleep 2 
 Osint
+sleep2
+App
 rm -rf /home/$DANT/Downloads/*
 echo -e "${BLUE}\nUpdating locate database.${NC}"
 updatedb
