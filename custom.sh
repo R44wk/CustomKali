@@ -669,7 +669,7 @@ App
 
 chown -R $DANT: /opt/
 nordvpn set dns 1.1.1.1 8.8.8.8 #set DNS in NordVPN
-rm -rf /home/$DANT/Downloads/*
+#rm -rf /home/$DANT/Downloads/*
 echo -e "${BLUE}\nUpdating locate database.${NC}"
 updatedb
 source /root/.zshrc
