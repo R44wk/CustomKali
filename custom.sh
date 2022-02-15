@@ -55,7 +55,7 @@ done
 
 echo -e "\n=========================================================================================================\n"
 read -p "Enter your username:~# " DANT
-read -p "\nEnter your GitHub APIKey:~# " token
+read -p "Enter your GitHub APIKey:~# " token
 
 echo -e "${BLUE}\n Upgrade Kali.  ${NC}"
 apt update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb
