@@ -69,10 +69,10 @@ mkdir /opt/Tools/{$DOS,$AV,$EXPLOIT,$FRAMEWORK,$INCIDENT,$OSINT,$SOCIAL,$APP,$SH
 
 #Install NordVPN
 echo -e "${BLUE}\n Install NordVPN 嬨 " ${NC}
-wget -O /home/$DANT/Downloads/nordvpn.deb https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb?_ga=2.63514733.310161373.1623303705-1134963399.1623303705
-cd /home/$DANT/Downloads/
+wget -O /home/$DANT/Downloads/CustomKali/nordvpn.deb https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb?_ga=2.63514733.310161373.1623303705-1134963399.1623303705
+cd /home/$DANT/Downloads/CustomKali/
 apt install ./nordvpn.deb && apt update && apt install nordvpn
-rm /home/$DANT/Downloads/nordvpn.deb
+rm /home/$DANT/Downloads/CustomKali/nordvpn.deb
 
 echo -e "${BLUE}\n Install OpenVPN. 嬨 ${NC}"
 apt install -y network-manager-openvpn
@@ -99,34 +99,34 @@ echo -e "${BLUE}\n PW-10K.  ${NC}"
 #Install powerlevel10k in user
 cd /home/$DANT/ && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git /home/$DANT/powerlevel10k
 sudo echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp /home/$DANT/Downloads/p10k.zsh /home/$DANT/.p10k.zsh
+cp /home/$DANT/Downloads/CustomKali/p10k.zsh /home/$DANT/.p10k.zsh
 #mv /home/$DANT/.zshrc /home/$DANT/zshrcBACKUP 
-cp /home/$DANT/Downloads/zshrc /home/$DANT/.zshrc
+cp /home/$DANT/Downloads/CustomKali/zshrc /home/$DANT/.zshrc
 sleep 2
 #Install Oh myTmux
 cd /home/$DANT/ && git clone https://$token@github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
-cp /home/$DANT/Downloads/tmux.conf.local /home/$DANT/.tmux.conf.local
+cp /home/$DANT/Downloads/CustomKali/tmux.conf.local /home/$DANT/.tmux.conf.local
 
 #Install powerlevel10k in root
 cd /root && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp /home/$DANT/Downloads/p10k.zsh /root/.p10k.zsh
+cp /home/$DANT/Downloads/CustomKali/p10k.zsh /root/.p10k.zsh
 #mv /root/.zshrc /root/zshrcBACKUP
-cp /home/$DANT/Downloads/zshrc /root/.zshrc
+cp /home/$DANT/Downloads/CustomKali/zshrc /root/.zshrc
 #Install Oh myTmux
 cd /root && git clone https://$token@github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
-cp /home/$DANT/Downloads/tmux.conf.local /root/.tmux.conf.local
+cp /home/$DANT/Downloads/CustomKali/tmux.conf.local /root/.tmux.conf.local
 
 cd /root && rm .zshrc && rm .tmux.conf.local
 ln -s -f /home/$DANT/.zshrc .zshrc && ln -s -f /home/$DANT/.tmux.conf.local .tmux.conf.local
 
 #Install lsd
 echo -e "${BLUE}\n LSD.  ${NC}"
-cd /home/$DANT/Downloads/
+cd /home/$DANT/Downloads/CustomKali/
 wget https://$token@github.com/Peltoche/lsd/releases/download/0.20.1/lsd-musl_0.20.1_amd64.deb
 dpkg -i lsd-musl_0.20.1_amd64.deb
 
@@ -147,17 +147,17 @@ tar -Jxvf /home/$DANT/Desktop/telegram.tar.xz -C /home/$DANT/Desktop/ && rm /hom
 
 #Install Visual Studio code
 echo -e "${BLUE}\n VSC.  ${NC}"
-wget -O /home/$DANT/Downloads/visual.deb https://az764295.vo.msecnd.net/stable/b4c1bd0a9b03c749ea011b06c6d2676c8091a70c/code_1.57.0-1623259737_amd64.deb
-dpkg -i /home/$DANT/Downloads/visual.deb; rm /home/$DANT/Downloads/visual.deb
+wget -O /home/$DANT/Downloads/CustomKali/visual.deb https://az764295.vo.msecnd.net/stable/b4c1bd0a9b03c749ea011b06c6d2676c8091a70c/code_1.57.0-1623259737_amd64.deb
+dpkg -i /home/$DANT/Downloads/CustomKali/visual.deb; rm /home/$DANT/Downloads/CustomKali/visual.deb
 
 #Instal driver Wifi
 echo -e "${BLUE}\n Install WiFi Realtek 8812AU/8821AU Driver   ${NC}"
 apt-get install -y linux-headers-$(uname -r) 
-git clone https://$token@github.com/aircrack-ng/rtl8812au /home/$DANT/Downloads/rtl8812au
-cd /home/$DANT/Downloads/rtl8812au
+git clone https://$token@github.com/aircrack-ng/rtl8812au /home/$DANT/Downloads/CustomKali/rtl8812au
+cd /home/$DANT/Downloads/CustomKali/rtl8812au
 apt install -y dkms
 make dkms_remove; sleep 2
-make dkms_install; cd /home/$DANT/Downloads/
+make dkms_install; cd /home/$DANT/Downloads/CustomKali/
 
 echo -e "${BLUE}\n Install GIMP   ${NC}"
 apt install gimp -y 
@@ -166,12 +166,12 @@ echo -e "${BLUE}\n Install Remina.  ${NC}"
 apt-get install remmina -y
 
 echo -e "${BLUE}\n Install Chrome.  ${NC}"
-wget -P /home/$DANT/Downloads/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-dpkg -i google-chrome-stable_current_amd64.deb; rm /home/$DANT/Downloads/google-chrome-stable_current_amd64.deb
+wget -P /home/$DANT/Downloads/CustomKali/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+dpkg -i google-chrome-stable_current_amd64.deb; rm /home/$DANT/Downloads/CustomKali/google-chrome-stable_current_amd64.deb
 
 echo -e "${BLUE}\n Install Nessus. 陋 ${NC}"
-wget -O /home/$DANT/Downloads/nessus.deb https://www.tenable.com/downloads/api/v1/public/pages/nessus/downloads/12696/download?i_agree_to_tenable_license_agreement=true
-dpkg -i /home/$DANT/Downloads/nessus.deb; rm /home/$DANT/Downloads/nessus.deb
+wget -O /home/$DANT/Downloads/CustomKali/nessus.deb https://www.tenable.com/downloads/api/v1/public/pages/nessus/downloads/12696/download?i_agree_to_tenable_license_agreement=true
+dpkg -i /home/$DANT/Downloads/CustomKali/nessus.deb; rm /home/$DANT/Downloads/CustomKali/nessus.deb
 /bin/systemctl start nessusd.service
 
 echo -e "${BLUE}\n Subfinder. 陋 ${NC}"
@@ -202,10 +202,10 @@ apt install network-manager-vpnc
 apt install network-manager-vpnc-gnome
 
 echo -e "${BLUE}\n Install OpenOffice.  ${NC}"
-wget -P /home/$DANT/Downloads/ https://netactuate.dl.sourceforge.net/project/openofficeorg.mirror/4.1.10/binaries/es/Apache_OpenOffice_4.1.10_Linux_x86-64_install-deb_es.tar.gz
-tar -xzvf /home/$DANT/Downloads/Apache_OpenOffice_4.1.10_Linux_x86-64_install-deb_es.tar.gz && rm /home/$DANT/Downloads/Apache_OpenOffice_4.1.10_Linux_x86-64_install-deb_es.tar.gz
-cd /home/$DANT/Downloads/es/DEBS; dpkg -i *.deb
-cd /home/$DANT/Downloads/es/DEBS/desktop-integration; dpkg -i *.deb; cd /home/$DANT/Downloads && rm -rf es
+wget -P /home/$DANT/Downloads/CustomKali/ https://netactuate.dl.sourceforge.net/project/openofficeorg.mirror/4.1.10/binaries/es/Apache_OpenOffice_4.1.10_Linux_x86-64_install-deb_es.tar.gz
+tar -xzvf /home/$DANT/Downloads/CustomKali/Apache_OpenOffice_4.1.10_Linux_x86-64_install-deb_es.tar.gz && rm /home/$DANT/Downloads/CustomKali/Apache_OpenOffice_4.1.10_Linux_x86-64_install-deb_es.tar.gz
+cd /home/$DANT/Downloads/CustomKali/es/DEBS; dpkg -i *.deb
+cd /home/$DANT/Downloads/CustomKali/es/DEBS/desktop-integration; dpkg -i *.deb; cd /home/$DANT/Downloads && rm -rf es
 
 echo -e "${BLUE}\n Install Docker.  ${NC}"
 apt install -y docker.io
@@ -236,15 +236,15 @@ apt install -y libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev li
 #mkdir build; cd /opt/polybar-3.5.6/build && cmake ..; make -j$(nproc); make install
 apt install -y polybar && apt install -y gnome-shell-extension-autohidetopbar
 sleep 1
-cp  -r /home/$DANT/Downloads/polybar /root/.config/polybar 2>>/home/$DANT/Downloads/error.txt && cp -r /home/$DANT/Downloads/polybar /home/$DANT/.config/polybar  2>>/home/$DANT/Downloads/error.txt
-cp /root/.config/polybar/launch.sh /etc/init.d/  2>>/home/$DANT/Downloads/error.txt && chmod 777 /etc/init.d/launch.sh  2>>/home/$DANT/Downloads/error.txt && update-rc.d launch.sh defaults  2>>/home/$DANT/Downloads/error.txt
+cp  -r /home/$DANT/Downloads/CustomKali/polybar /root/.config/polybar 2>>/home/$DANT/Downloads/CustomKali/error.txt && cp -r /home/$DANT/Downloads/CustomKali/polybar /home/$DANT/.config/polybar  2>>/home/$DANT/Downloads/CustomKali/error.txt
+cp /root/.config/polybar/launch.sh /etc/init.d/  2>>/home/$DANT/Downloads/CustomKali/error.txt && chmod 777 /etc/init.d/launch.sh  2>>/home/$DANT/Downloads/CustomKali/error.txt && update-rc.d launch.sh defaults  2>>/home/$DANT/Downloads/CustomKali/error.txt
 sleep 2
 /etc/init.d/launch.sh start 2>/dev/null
 #gdbus call --session --dest org.gnome.Shell --object-path /org/gnome/Shell --method org.gnome.Shell.Eval string:\'Main.panel.actor.hide();\'
 chmod +x /root/.config/polybar/bin/*.sh
 
 
-mv /home/$DANT/Downloads/matrix.sh /bin/matrix.sh; chmod +x /bin/matrix.sh
+mv /home/$DANT/Downloads/CustomKali/matrix.sh /bin/matrix.sh; chmod +x /bin/matrix.sh
 
 #Install BETTERCAP
 echo -e "${YELLOW}\n Install Bettercap.  ${NC}"
@@ -669,7 +669,7 @@ App
 
 chown -R $DANT: /opt/
 nordvpn set dns 1.1.1.1 8.8.8.8 #set DNS in NordVPN
-#rm -rf /home/$DANT/Downloads/*
+#rm -rf /home/$DANT/Downloads/CustomKali/*
 echo -e "${BLUE}\nUpdating locate database.${NC}"
 updatedb
 source /root/.zshrc
