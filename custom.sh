@@ -22,11 +22,15 @@ APP="Vulneravility-App"
 SHELL="Webshell"
 WIFI="WiFi"
 token=" "  #Your API Github
-path=$(pwd)
+track=$(pwd)
 
 
 ###############################################################################################################################
-clear
+#create tracks
+mkdir /opt/Tools;
+mkdir /opt/Tools/{$DOS,$AV,$EXPLOIT,$FRAMEWORK,$INCIDENT,$OSINT,$SOCIAL,$APP,$SHELL,$WIFI};
+
+clear;
 
 #Install Hack Nerd Font
 echo -e "${BLUE} \n Install fonts. ﯔ ${NC}"
@@ -44,7 +48,7 @@ MIN="999"
 MAX="2000"
  
 echo -e "${purpura}\n..::Your System users::..\n${NC}"
-echo
+
 for ID in do $NUM; do
     if [ $ID -gt $MIN > /dev/null 2>&1 ] && [ $ID -lt $MAX > /dev/null 2>&1 ] ; then
                 USER=$(cat /etc/passwd | cut -d: -f1-3 | grep $ID | cut -d: -f1)
@@ -58,13 +62,14 @@ read -p "Enter your APIKey Github:~# " token
 
 echo -e "${BLUE}\n Upgrade Kali.  ${NC}"
 apt update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb
+}
 
 #Install NordVPN
 echo -e "${BLUE}\n Install NordVPN 嬨 " ${NC}
-wget -O $path/nordvpn.deb https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb?_ga=2.63514733.310161373.1623303705-1134963399.1623303705
-cd $path/
+wget -O $track/nordvpn.deb https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb?_ga=2.63514733.310161373.1623303705-1134963399.1623303705
+cd $track/
 apt install ./nordvpn.deb && apt update && apt install nordvpn
-rm $path/nordvpn.deb
+rm $track/nordvpn.deb
 
 echo -e "${BLUE}\n Install OpenVPN. 嬨 ${NC}"
 apt install -y network-manager-openvpn
@@ -77,46 +82,49 @@ apt install -y network-manager-vpnc-gnome
 
 
 echo -e "${BLUE}\n Trensmission. 褐 ${NC}"
-apt install -y transmission
+apt install -y transmission;
 
 echo -e "${BLUE}\n Feroxbuster. 褐 ${NC}"
-apt install -y feroxbuster
+apt install -y feroxbuster;
 
 echo -e "${BLUE}\n Keepass. 褐 ${NC}"
-apt install -y keepass2
+apt install -y keepassx;
+
+echo -e "${BLUE}\n Install Docker.  ${NC}"
+apt install -y docker.io; systemctl enable docker --now;
 
 echo -e "${BLUE}\n PW-10K.  ${NC}"
 #Install powerlevel10k in user
 cd /home/$DANT/ && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git /home/$DANT/powerlevel10k
 sudo echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp $path/p10k.zsh /home/$DANT/.p10k.zsh
+cp $track/p10k.zsh /home/$DANT/.p10k.zsh
 #mv /home/$DANT/.zshrc /home/$DANT/zshrcBACKUP 
-cp $path/zshrc /home/$DANT/.zshrc
+cp $track/zshrc /home/$DANT/.zshrc
 sleep 2
 #Install Oh myTmux
 cd /home/$DANT/ && git clone https://$token@github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
-cp $path/tmux.conf.local /home/$DANT/.tmux.conf.local
+cp $track/tmux.conf.local /home/$DANT/.tmux.conf.local
 
 #Install powerlevel10k in root
 cd /root && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp $path/p10k.zsh /root/.p10k.zsh
+cp $track/p10k.zsh /root/.p10k.zsh
 #mv /root/.zshrc /root/zshrcBACKUP
-cp $path/zshrc /root/.zshrc
+cp $track/zshrc /root/.zshrc
 #Install Oh myTmux
 cd /root && git clone https://$token@github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
-cp $path/tmux.conf.local /root/.tmux.conf.local
+cp $track/tmux.conf.local /root/.tmux.conf.local
 
 cd /root && rm .zshrc && rm .tmux.conf.local
 ln -s -f /home/$DANT/.zshrc .zshrc && ln -s -f /home/$DANT/.tmux.conf.local .tmux.conf.local
 
 #Install lsd
 echo -e "${BLUE}\n LSD.  ${NC}"
-cd $path/
+cd $track/
 wget https://$token@github.com/Peltoche/lsd/releases/download/0.20.1/lsd-musl_0.20.1_amd64.deb
 dpkg -i lsd-musl_0.20.1_amd64.deb
 
@@ -125,120 +133,106 @@ echo -e "${BLUE}\n BAT.  ${NC}"
 wget https://$token@github.com/sharkdp/bat/releases/download/v0.18.1/bat_0.18.1_amd64.deb
 dpkg -i bat_0.18.1_amd64.deb
 
-source /root/.zshrc
-
 echo -e "${BLUE}\n rlwrap.  ${NC}"
 apt install rlwrap -y 
 
 #Install Telegram
-echo -e "${BLUE}\n Telegram.  ${NC}"
-wget -O /home/$DANT/Desktop/telegram.tar.xz  https://telegram.org/dl/desktop/linux
-tar -Jxvf /home/$DANT/Desktop/telegram.tar.xz -C /home/$DANT/Desktop/ && rm /home/$DANT/Desktop/telegram.tar.xz
+echo -e "${BLUE}\n Telegram.  ${NC}";
+wget -O /home/$DANT/Desktop/telegram.tar.xz  https://updates.tdesktop.com/tlinux/tsetup.3.5.2.tar.xz;
+tar -Jxvf /home/$DANT/Desktop/telegram.tar.xz -C /home/$DANT/Desktop/ && rm /home/$DANT/Desktop/telegram.tar.xz;
 
 #Install Visual Studio code
-echo -e "${BLUE}\n VSC.  ${NC}"
-wget -O $path/visual.deb https://az764295.vo.msecnd.net/stable/b4c1bd0a9b03c749ea011b06c6d2676c8091a70c/code_1.57.0-1623259737_amd64.deb
-dpkg -i $path/visual.deb; rm $path/visual.deb
+echo -e "${BLUE}\n VSC.  ${NC}";
+wget -O $track/visual.deb https://az764295.vo.msecnd.net/stable/b4c1bd0a9b03c749ea011b06c6d2676c8091a70c/code_1.57.0-1623259737_amd64.deb;
+dpkg -i $track/visual.deb; rm $track/visual.deb;
 
 #Instal driver Wifi
-echo -e "${BLUE}\n Install WiFi Realtek 8812AU/8821AU Driver   ${NC}"
-apt-get install -y linux-headers-$(uname -r) 
-git clone https://$token@github.com/aircrack-ng/rtl8812au $path/rtl8812au
-cd $path/rtl8812au
-apt install -y dkms
-make dkms_remove; sleep 2
-make dkms_install; cd $path/
+echo -e "${BLUE}\n Install WiFi Realtek 8812AU/8821AU Driver   ${NC}";
+apt-get install -y linux-headers-$(uname -r) ;
+git clone https://$token@github.com/aircrack-ng/rtl8812au $track/rtl8812au;
+cd $track/rtl8812au;
+apt install -y dkms;
+make dkms_remove; sleep 2;
+make dkms_install; cd $track/
 
-echo -e "${BLUE}\n Install GIMP   ${NC}"
-apt install gimp -y 
+echo -e "${BLUE}\n Install GIMP   ${NC}";
+apt install gimp -y;
 
 echo -e "${BLUE}\n Install Remina.  ${NC}"
-apt-get install remmina -y
+apt-get install remmina -y;
 
 echo -e "${BLUE}\n Install Chrome.  ${NC}"
-wget -P $path/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-dpkg -i google-chrome-stable_current_amd64.deb; rm $path/google-chrome-stable_current_amd64.deb
+wget -P $track/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb;
+dpkg -i google-chrome-stable_current_amd64.deb; rm $track/google-chrome-stable_current_amd64.deb;
 
 echo -e "${BLUE}\n Install Nessus. 陋 ${NC}"
-wget -O $path/nessus.deb https://www.tenable.com/downloads/api/v1/public/pages/nessus/downloads/15803/download?i_agree_to_tenable_license_agreement=true
-dpkg -i $path/nessus.deb; rm $path/nessus.deb
-/bin/systemctl start nessusd.service
+wget -O $track/nessus.deb https://www.tenable.com/downloads/api/v1/public/pages/nessus/downloads/15803/download?i_agree_to_tenable_license_agreement=true;
+dpkg -i $track/nessus.deb; rm $track/nessus.deb;
+/bin/systemctl start nessusd.service;
 
-echo -e "${BLUE}\n Subfinder. 陋 ${NC}"
-apt install -y subfinder
+echo -e "${BLUE}\n Subfinder. 陋 ${NC}";
+apt install -y subfinder;
 
 echo -e "${BLUE}\n Speddtest. 陋 ${NC}"
-apt install -y speedtest-cli
+apt install -y speedtest-cli;
 
 echo -e "${BLUE}\n Install Tor. 﨩 ${NC}"
-apt install tor -y 
-systemctl start tor
-apt install -y onionshare
-systemctl enable tor
+apt install tor -y;
+systemctl start tor;
+apt install -y onionshare;
+systemctl enable tor;
 
 echo -e "${BLUE}\n Install i2p.  ${NC}"
-docker pull geti2p/i2p
+docker pull geti2p/i2p;
 
 echo -e "${BLUE}\n Install Dirsearch.  ${NC}"
-apt install -y dirsearch
+apt install -y dirsearch;
 
-echo -e "${BLUE}\n Install OpenVPN.  ${NC}"
-apt install network-manager-openvpn
-apt install network-manager-openvpn-gnome
-apt install network-manager-pptp
-apt install network-manager-pptp-gnome
-apt install network-manager-strongswan
-apt install network-manager-vpnc
-apt install network-manager-vpnc-gnome
 
 echo -e "${BLUE}\n Install OpenOffice.  ${NC}"
-wget -P $path/ https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.11/binaries/en-US/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz
-tar -xzvf $path/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz && rm $path/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz
-cd $path/es/DEBS; dpkg -i *.deb
-cd $path/es/DEBS/desktop-integration; dpkg -i *.deb; cd /home/$DANT/Downloads && rm -rf es
-
-echo -e "${BLUE}\n Install Docker.  ${NC}"
-apt install -y docker.io
-systemctl enable docker --now
+wget -P $track/ https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.11/binaries/en-US/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz;
+tar -xzvf $track/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz && rm $track/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz;
+cd $track/es/DEBS; dpkg -i *.deb;
+cd $track/es/DEBS/desktop-integration; dpkg -i *.deb; cd /home/$DANT/Downloads && rm -rf es;
 
 echo -e "${BLUE}\n Install Virtualenv.  ${NC}"
-pip3 install virtualenv
+pip3 install virtualenv;
 
 echo -e "${BLUE}\n Install Go.  ${NC}"
-apt install -y golang
+apt install -y golang;
 
 echo -e "${BLUE}\n Install VLC.  ${NC}"
-apt install -y vlc
+apt install -y vlc;
 
 echo -e "${BLUE}\n Install NSearch.  ${NC}"
-git clone https://$token@github.com/jtibaquira/nsearch.git /opt/NSearch
+git clone https://$token@github.com/jtibaquira/nsearch.git /opt/NSearch;
 #Instalar y ejecutar en virtualenv
 
 echo -e "${BLUE}\n Install VulnScan.  ${NC}"
-git clone https://$token@github.com/scipag/vulscan.git /usr/share/nmap/scripts/vulscan/
+git clone https://$token@github.com/scipag/vulscan.git /usr/share/nmap/scripts/vulscan/;
 
 # Install POLYBAR
-echo -e "${BLUE}\n Install Polybar.  ${NC}"
-apt install -y build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev
-apt install -y libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev
+echo -e "${BLUE}\n Install Polybar.  ${NC}";
+apt install -y build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev;
+apt install -y libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev;
 #wget -P /opt/ https://github.com/polybar/polybar/releases/download/3.5.6/polybar-3.5.6.tar.gz
 #tar -xf /opt/polybar-3.5.6.tar.gz -C /opt/ #&& rm /opt/polybar-3.5.6.tar.gz && cd /opt/polybar-3.5.6
 #mkdir build; cd /opt/polybar-3.5.6/build && cmake ..; make -j$(nproc); make install
-apt install -y polybar && apt install -y gnome-shell-extension-autohidetopbar
+apt install -y polybar && apt install -y gnome-shell-extension-autohidetopbar;
 sleep 1
-cp  -r $path/polybar /root/.config/polybar 2>>$path/error.txt && cp -r $path/polybar /home/$DANT/.config/polybar  2>>$path/error.txt
-cp /root/.config/polybar/launch.sh /etc/init.d/  2>>$path/error.txt && chmod 777 /etc/init.d/launch.sh  2>>$path/error.txt && update-rc.d launch.sh defaults  2>>$path/error.txt
+cp  -r $track/polybar /root/.config/polybar 2>>$track/error.txt && cp -r $track/polybar /home/$DANT/.config/polybar  2>>$track/error.txt;
+cp /root/.config/polybar/launch.sh /etc/init.d/  2>>$track/error.txt && chmod 777 /etc/init.d/launch.sh  2>>$track/error.txt && update-rc.d launch.sh defaults  2>>$track/error.txt;
 sleep 2
-/etc/init.d/launch.sh start 2>/dev/null
-#gdbus call --session --dest org.gnome.Shell --object-path /org/gnome/Shell --method org.gnome.Shell.Eval string:\'Main.panel.actor.hide();\'
-chmod +x /root/.config/polybar/bin/*.sh
+/etc/init.d/launch.sh start 2>/dev/null;
+#gdbus call --session --dest org.gnome.Shell --object-track /org/gnome/Shell --method org.gnome.Shell.Eval string:\'Main.panel.actor.hide();\'
+chmod +x /root/.config/polybar/bin/*.sh;
 
 
-mv $path/matrix.sh /bin/matrix.sh; chmod +x /bin/matrix.sh
+cp $track/matrix.sh /bin/matrix.sh; chmod +x /bin/matrix.sh;
 
 #Install BETTERCAP
 echo -e "${YELLOW}\n Install Bettercap.  ${NC}"
-apt install -y bettercap
+apt install -y bettercap;
 
 #Install Discover
 echo -e "${YELLOW}\n Install Discover.  ${NC}"
@@ -256,10 +250,10 @@ make clean && make all
 
 apt install -y edb-debugger
 echo -e "${YELLOW}\n Install edb-debugger.  ${NC}"
-#create paths
-mkdir /opt/Tools
-mkdir /opt/Tools/{$DOS,$AV,$EXPLOIT,$FRAMEWORK,$INCIDENT,$OSINT,$SOCIAL,$APP,$SHELL,$WIFI}
-}
+
+#Install VMWare-Tools
+apt install -y --reinstall open-vm-tools-desktop fuse
+
 
 ###############################################################################################################################
 ################################################## AV-Evation #################################################################
