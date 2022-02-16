@@ -62,7 +62,7 @@ read -p "Enter your APIKey Github:~# " token
 
 echo -e "${BLUE}\n Upgrade Kali.  ${NC}"
 apt update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb
-}
+
 
 #Install NordVPN
 echo -e "${BLUE}\n Install NordVPN 嬨 " ${NC}
@@ -190,10 +190,10 @@ apt install -y dirsearch;
 
 
 echo -e "${BLUE}\n Install OpenOffice.  ${NC}"
-wget -P $track/ https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.11/binaries/en-US/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz;
-tar -xzvf $track/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz && rm $track/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz;
+wget -P $track/ https://iweb.dl.sourceforge.net/project/openofficeorg.mirror/4.1.11/binaries/es/Apache_OpenOffice_4.1.11_Linux_x86-64_install-deb_es.tar.gz;
+tar -xzvf $trackApache_OpenOffice_4.1.11_Linux_x86-64_install-deb_es.tar.gz;
 cd $track/es/DEBS; dpkg -i *.deb;
-cd $track/es/DEBS/desktop-integration; dpkg -i *.deb; cd /home/$DANT/Downloads && rm -rf es;
+cd $track/es/DEBS/desktop-integration; dpkg -i *.deb; cd $track;
 
 echo -e "${BLUE}\n Install Virtualenv.  ${NC}"
 pip3 install virtualenv;
@@ -253,7 +253,7 @@ echo -e "${YELLOW}\n Install edb-debugger.  ${NC}"
 
 #Install VMWare-Tools
 apt install -y --reinstall open-vm-tools-desktop fuse
-
+}
 
 ###############################################################################################################################
 ################################################## AV-Evation #################################################################
@@ -282,11 +282,6 @@ mcs /reference:OpenMcdf.dll,System.IO.Compression.FileSystem.dll /out:EvilClippy
 echo -e "${cyan}\n Install HERCULES.${NC}"
 cd /opt/Tools/$AV/HERCULES
 apt install golang -y; go get github.com/fatih/color; go run Setup.go; chmod +x HERCULES
-
-echo -e "${cyan}\nInstall TheFatRat.${NC}"
-cd /opt/Tools/$AV/TheFatRat
-chmod +x setup.sh && ./setup.sh
-
 
 echo -e "${cyan}\nInstall shellter.${NC}"
 cd /opt/Tools/$AV/
@@ -465,10 +460,6 @@ cd /opt/Tools/$FRAMEWORK/Crips; chmod +x install.sh;./install.sh
 echo -e "${YELLOW}\nInstall jboss-autopwn${NC}"
 cd  /opt/Tools/$FRAMEWORK; git clone https://$token@github.com/SpiderLabs/jboss-autopwn.git
 
-echo -e "${YELLOW}\nInstall lscript${NC}"
-cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/arismelachroinos/lscript.git
-cd /opt/Tools/$FRAMEWORK/lscript; chmod +x install.sh; ./install.sh
-
 echo -e "${YELLOW}\nInstall ZSC${NC}"
 cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/OWASP/ZSC.git
 cd /opt/Tools/$FRAMEWORK/ZSC; python installer.py
@@ -479,12 +470,11 @@ cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/secforce/sparta.gi
 
 echo -e "${YELLOW}\nInstall V3n0M-Scanner${NC}"
 cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/v3n0m-Scanner/V3n0M-Scanner.git
-apt-get install python3-dev apt-get install python-dev -y
-cd /opt/Tools/$FRAMEWORK/V3n0M-Scanner/; python3 setup.py install --user
 
-#echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
-#apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
-#npm install -g btlejuice
+
+echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
+apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
+npm install -g btlejuice
 
 
 git clone https://$token@github.com/MobSF/Mobile-Security-Framework-MobSF.git
