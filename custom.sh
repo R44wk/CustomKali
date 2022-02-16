@@ -160,7 +160,7 @@ wget -P $path/ https://dl.google.com/linux/direct/google-chrome-stable_current_a
 dpkg -i google-chrome-stable_current_amd64.deb; rm $path/google-chrome-stable_current_amd64.deb
 
 echo -e "${BLUE}\n Install Nessus. 陋 ${NC}"
-wget -O $path/nessus.deb https://www.tenable.com/downloads/api/v1/public/pages/nessus/downloads/12696/download?i_agree_to_tenable_license_agreement=true
+wget -O $path/nessus.deb https://www.tenable.com/downloads/api/v1/public/pages/nessus/downloads/15803/download?i_agree_to_tenable_license_agreement=true
 dpkg -i $path/nessus.deb; rm $path/nessus.deb
 /bin/systemctl start nessusd.service
 
@@ -192,8 +192,8 @@ apt install network-manager-vpnc
 apt install network-manager-vpnc-gnome
 
 echo -e "${BLUE}\n Install OpenOffice.  ${NC}"
-wget -P $path/ https://netactuate.dl.sourceforge.net/project/openofficeorg.mirror/4.1.10/binaries/es/Apache_OpenOffice_4.1.10_Linux_x86-64_install-deb_es.tar.gz
-tar -xzvf $path/Apache_OpenOffice_4.1.10_Linux_x86-64_install-deb_es.tar.gz && rm $path/Apache_OpenOffice_4.1.10_Linux_x86-64_install-deb_es.tar.gz
+wget -P $path/ https://sourceforge.net/projects/openofficeorg.mirror/files/4.1.11/binaries/en-US/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz
+tar -xzvf $path/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz && rm $path/Apache_OpenOffice_4.1.11_Linux_x86-64_install-rpm_en-US.tar.gz
 cd $path/es/DEBS; dpkg -i *.deb
 cd $path/es/DEBS/desktop-integration; dpkg -i *.deb; cd /home/$DANT/Downloads && rm -rf es
 
