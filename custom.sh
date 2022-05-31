@@ -677,33 +677,33 @@ echo -e "${YELLOW}                                                              
 
 }
 
-Banner 2>>errors.txt
+Banner 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
 Kali 
 sleep 2 
-install 2>>errors.txt
-AV-Evation 2>>errors.txt
+install 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+AV-Evation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
-wifi 2>>errors.txt
+wifi 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
-Dos 2>>errors.txt
+Dos 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
-Exploit 2>>errors.txt
-apt update -y && apt upgrade 2>>errors.txt
-Framework 2>>errors.txt
+Exploit 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+apt update -y && apt upgrade 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+Framework 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
-Incident 2>>errors.txt
+Incident 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
-Social 2>>errors.txt
+Social 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
-Osint 2>>errors.txt
+Osint 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep2
-App 2>>errors.txt
+App 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 nordvpn set dns 1.1.1.1 8.8.8.8 2>>errors.txt #set DNS in VPN
 echo -e "${BLUE}\nUpdating locate database.${NC}"
-updatedb 2>>errors.txt
+updatedb 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
-source /root/.zshrc 2>>errors.txt
+source /root/.zshrc 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 slepp 5
 echo -e "${red}\nDone...${NC}"
 exit
