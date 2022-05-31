@@ -62,8 +62,9 @@ read -p " Enter your APIKey Github:~# " token
 
 echo -e "${BLUE}\n Upgrade Kali.  ${NC}"
 apt -y update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb
+}
 
-
+install(){
 #Install NordVPN
 echo -e "${BLUE}\n Install NordVPN 嬨  ${NC}"
 wget -O $track/nordvpn.deb https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb?_ga=2.63514733.310161373.1623303705-1134963399.1623303705
@@ -678,8 +679,9 @@ echo -e "${YELLOW}                                                              
 
 Banner 2>>errors.txt
 sleep 2 
-Kali 2>>errors.txt
+Kali 
 sleep 2 
+install 2>>errors.txt
 AV-Evation 2>>errors.txt
 sleep 2
 wifi 2>>errors.txt
