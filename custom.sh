@@ -57,15 +57,15 @@ for ID in do $NUM; do
 done
 
 echo -e "\n=========================================================================================================\n"
-read -p "Enter your username:~# " DANT
-read -p "Enter your APIKey Github:~# " token
+read -p " Enter your username:~# " DANT
+read -p " Enter your APIKey Github:~# " token
 
 echo -e "${BLUE}\n Upgrade Kali.  ${NC}"
-apt update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb
+apt -y update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb
 
 
 #Install NordVPN
-echo -e "${BLUE}\n Install NordVPN 嬨 " ${NC}
+echo -e "${BLUE}\n Install NordVPN 嬨  ${NC}"
 wget -O $track/nordvpn.deb https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb?_ga=2.63514733.310161373.1623303705-1134963399.1623303705
 cd $track/
 apt install ./nordvpn.deb && apt update && apt install nordvpn
@@ -84,11 +84,11 @@ apt install -y network-manager-vpnc-gnome
 echo -e "${BLUE}\n Trensmission. 褐 ${NC}"
 apt install -y transmission;
 
-echo -e "${BLUE}\n Feroxbuster. 褐 ${NC}"
+echo -e "${BLUE}\n Feroxbuster.  ${NC}"
 apt install -y feroxbuster;
 
-echo -e "${BLUE}\n Keepass. 褐 ${NC}"
-apt install -y keepassx;
+echo -e "${BLUE}\n Keepass.  ${NC}"
+apt install -y keepassxc;
 
 echo -e "${BLUE}\n Install Docker.  ${NC}"
 apt install -y docker.io; systemctl enable docker --now;
@@ -130,11 +130,11 @@ dpkg -i lsd-musl_0.20.1_amd64.deb
 
 #Install bat
 echo -e "${BLUE}\n BAT.  ${NC}"
-wget https://$token@github.com/sharkdp/bat/releases/download/v0.18.1/bat_0.18.1_amd64.deb
-dpkg -i bat_0.18.1_amd64.deb
+wget https://$token@github.com/sharkdp/bat/releases/download/v0.18.1/bat_0.18.1_amd64.deb; dpkg -i bat_0.18.1_amd64.deb
+
 
 echo -e "${BLUE}\n rlwrap.  ${NC}"
-apt install rlwrap -y 
+apt install rlwrap -y; 
 
 #Install Telegram
 echo -e "${BLUE}\n Telegram.  ${NC}";
@@ -142,7 +142,7 @@ wget -O /home/$DANT/Desktop/telegram.tar.xz  https://updates.tdesktop.com/tlinux
 tar -Jxvf /home/$DANT/Desktop/telegram.tar.xz -C /home/$DANT/Desktop/ && rm /home/$DANT/Desktop/telegram.tar.xz;
 
 #Install Visual Studio code
-echo -e "${BLUE}\n VSC.  ${NC}";
+echo -e "${BLUE}\n VSC. 嗢 ${NC}";
 wget -O $track/visual.deb https://az764295.vo.msecnd.net/stable/b4c1bd0a9b03c749ea011b06c6d2676c8091a70c/code_1.57.0-1623259737_amd64.deb;
 dpkg -i $track/visual.deb; rm $track/visual.deb;
 
@@ -191,24 +191,24 @@ apt install -y dirsearch;
 
 echo -e "${BLUE}\n Install OpenOffice.  ${NC}"
 wget -P $track/ https://iweb.dl.sourceforge.net/project/openofficeorg.mirror/4.1.11/binaries/es/Apache_OpenOffice_4.1.11_Linux_x86-64_install-deb_es.tar.gz;
-tar -xzvf $trackApache_OpenOffice_4.1.11_Linux_x86-64_install-deb_es.tar.gz;
+tar -xzvf $track/Apache_OpenOffice_4.1.11_Linux_x86-64_install-deb_es.tar.gz;
 cd $track/es/DEBS; dpkg -i *.deb;
 cd $track/es/DEBS/desktop-integration; dpkg -i *.deb; cd $track;
 
 echo -e "${BLUE}\n Install Virtualenv.  ${NC}"
 pip3 install virtualenv;
 
-echo -e "${BLUE}\n Install Go.  ${NC}"
+echo -e "${BLUE}\n Install Go. ﳑ ${NC}"
 apt install -y golang;
 
 echo -e "${BLUE}\n Install VLC.  ${NC}"
 apt install -y vlc;
 
-echo -e "${BLUE}\n Install NSearch.  ${NC}"
+echo -e "${BLUE}\n Install NSearch.  ${NC}"
 git clone https://$token@github.com/jtibaquira/nsearch.git /opt/NSearch;
 #Instalar y ejecutar en virtualenv
 
-echo -e "${BLUE}\n Install VulnScan.  ${NC}"
+echo -e "${BLUE}\n Install VulnScan.  ${NC}"
 git clone https://$token@github.com/scipag/vulscan.git /usr/share/nmap/scripts/vulscan/;
 
 # Install POLYBAR
@@ -248,11 +248,49 @@ make clean && make all
 
 #Install Debugger
 
-apt install -y edb-debugger
 echo -e "${YELLOW}\n Install edb-debugger.  ${NC}"
+apt install -y edb-debugger
 
 #Install VMWare-Tools
-apt install -y --reinstall open-vm-tools-desktop fuse
+apt install -y --reinstall open-vm-tools-desktop
+
+echo -e "${YELLOW}\n Install Sonarqube.  ${NC}"
+
+docker pull sonarqube
+docker volume create sonarqube-conf 
+docker volume create sonarqube-data
+docker volume create sonarqube-logs
+docker volume create sonarqube-extensions
+
+
+echo -e "${YELLOW}\n Install ForticlientVPN. 嬨 ${NC}"
+
+#Install requeriments FortiClientVPN
+cd $track
+apt-get -y install libdbusmenu-gtk4
+apt-get -y install libgconf-2-4
+curl -p --insecure "http://ftp.br.debian.org/debian/pool/main/libi/libindicator/libindicator7_0.5.0-4_amd64.deb" --output libindicator7_0.5.0-4_amd64.deb
+dpkg -i libindicator7_0.5.0-4_amd64.deb
+
+#curl -p --insecure "http://ftp.de.debian.org/debian/pool/main/liba/libappindicator/libappindicator1_0.4.92-3.1_amd64.deb" --output libappindicator1_0.4.92-8_amd64.deb
+#dpkg -i libappindicator1_0.4.92-8_amd64.deb
+
+#Install Forticlient following steps -> https://www.fortinet.com/support/product-downloads/linux
+
+
+wget -c 'https://hadler.me/files/forticlient-sslvpn_4.4.2333-1_amd64.deb'; dpkg -i forticlient-sslvpn_4.4.2333-1_amd64.deb
+
+
+
+echo -e "${YELLOW}\n Install ADB-Tools.  ${NC}"
+apt install -y adb
+
+echo -e "${YELLOW}\n Install UberTooth.  ${NC}"
+
+apt update && sudo apt install cmake libusb-1.0-0-dev git make gcc g++ libbluetooth-dev wget build-essential pkg-config python3-numpy python3-qtpy python3-distutils python3-setuptools wireshark wireshark-dev libwireshark-dev python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev -y
+
+
+
 }
 
 ###############################################################################################################################
@@ -291,6 +329,10 @@ echo -e "${cyan}\nInstall Phantom-Evasion.${NC}"
 cd /opt/Tools/$AV/Phantom-Evasion; python3 phantom-evasion.py --setup
 
 git clone https://$token@github.com/devploit/XORpass
+
+echo -e "${cyan}\nInstall JPGtoMalware.${NC}"
+cd /opt/Tools/$AV/
+gti clone https://$token@github.com/abdulkadir-gungor/JPGtoMalware.git
 }
 
 ###############################################################################################################################
@@ -325,6 +367,8 @@ git clone https://$token@github.com/vanhoefm/krackattacks-scripts.git krackattac
 git clone https://$token@github.com/Telefonica/HomePWN.git
 
 git clone https://$token@github.com/hash3liZer/WiFiBroot.git
+
+git clone https://$token@github.com/FluxionNetwork/fluxion.git
 
 
 }
@@ -476,7 +520,7 @@ echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
 apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
 npm install -g btlejuice
 
-
+echo -e "${YELLOW}\nInstall MobSF${NC}"
 git clone https://$token@github.com/MobSF/Mobile-Security-Framework-MobSF.git
 
 }
@@ -524,6 +568,10 @@ cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/infosecn1nja/Malici
 
 echo -e "${YELLOW}\nInstall Modlishka${NC}"
 cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/drk1wi/Modlishka.git
+
+echo -e "${YELLOW}\nInstall ZPhisher${NC}"
+cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/htr-tech/zphisher.git
+
 
 #cd  /opt/Tools/$SOCIAL/; git clone https://github.com/TheSpeedX/TBomb.git
 
@@ -589,6 +637,7 @@ git clone https://$token@github.com/iojw/socialscan.git
 git clone https://$token@github.com/Dheerajmadhukar/karma_v2.git
 git clone https://$token@github.com/smicallef/spiderfoot.git
 git clone https://$token@github.com/BishopFox/GitGot.git
+git clone https://$token@github.com/mubix/IOXIDResolver.git
 }
 
 
@@ -627,32 +676,32 @@ echo -e "${YELLOW}                                                              
 
 }
 
-Banner
+Banner 2>>errors.txt
 sleep 2 
-Kali
+Kali 2>>errors.txt
 sleep 2 
-AV-Evation
+AV-Evation 2>>errors.txt
 sleep 2
-wifi
+wifi 2>>errors.txt
 sleep 2
-Dos
+Dos 2>>errors.txt
 sleep 2 
-Exploit
-apt update -y && apt upgrade 
-Framework
+Exploit 2>>errors.txt
+apt update -y && apt upgrade 2>>errors.txt
+Framework 2>>errors.txt
 sleep 2 
-Incident
+Incident 2>>errors.txt
 sleep 2 
-Social
+Social 2>>errors.txt
 sleep 2 
-Osint
+Osint 2>>errors.txt
 sleep2
-App
-nordvpn set dns 1.1.1.1 8.8.8.8 #set DNS in VPN
+App 2>>errors.txt
+nordvpn set dns 1.1.1.1 8.8.8.8 2>>errors.txt #set DNS in VPN
 echo -e "${BLUE}\nUpdating locate database.${NC}"
-updatedb
+updatedb 2>>errors.txt
 sleep 2
-source /root/.zshrc
+source /root/.zshrc 2>>errors.txt
 slepp 5
 echo -e "${red}\nDone...${NC}"
 exit
