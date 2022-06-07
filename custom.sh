@@ -21,8 +21,9 @@ SOCIAL="Social-Ing"
 APP="Vulneravility-App"
 SHELL="Webshell"
 WIFI="WiFi"
-token=" "  #Your API Github
+token="" 
 track=$(pwd)
+
 
 
 ###############################################################################################################################
@@ -52,7 +53,7 @@ echo -e "${purpura}\n..::Your System users::..\n${NC}"
 for ID in do $NUM; do
     if [ $ID -gt $MIN > /dev/null 2>&1 ] && [ $ID -lt $MAX > /dev/null 2>&1 ] ; then
                 USER=$(cat /etc/passwd | cut -d: -f1-3 | grep $ID | cut -d: -f1)
-                echo -e "${lightgreen} >> $USER ${NC}"
+                echo -e "${lightgreen}  >> $USER ${NC}"
         fi
 done
 
@@ -64,7 +65,60 @@ echo -e "${BLUE}\n Upgrade Kali.  ${NC}"
 apt -y update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb
 }
 
+###############################################################################################################################
+###############################################################################################################################
+
 install(){
+
+echo -e "${BLUE}\n PW-10K.  ${NC}"
+#Install powerlevel10k in user
+cd /home/$DANT/ && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git /home/$DANT/powerlevel10k
+sudo echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
+cp $track/p10k.zsh /home/$DANT/.p10k.zsh
+#mv /home/$DANT/.zshrc /home/$DANT/zshrcBACKUP 
+cp $track/zshrc /home/$DANT/.zshrc
+sleep 2
+#Install Oh myTmux
+cd /home/$DANT/ && git clone https://$token@github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+cp $track/tmux.conf.local /home/$DANT/.tmux.conf.local
+#Install Oh myTmux in root user
+cd /root && git clone https://$token@github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+cp $track/tmux.conf.local /root/.tmux.conf.local
+
+cd /root && rm .zshrc && rm .tmux.conf.local
+ln -s -f /home/$DANT/.zshrc .zshrc && ln -s -f /home/$DANT/.tmux.conf.local .tmux.conf.local
+
+#Install powerlevel10k in root
+cd /root && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
+cp $track/p10k.zsh /root/.p10k.zsh
+cp $track/zshrc /root/.zshrc
+
+# Install POLYBAR
+echo -e "${BLUE}\n Install Polybar.  ${NC}";
+apt install -y build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev;
+apt install -y libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev;
+#wget -P /opt/ https://github.com/polybar/polybar/releases/download/3.5.6/polybar-3.5.6.tar.gz
+#tar -xf /opt/polybar-3.5.6.tar.gz -C /opt/ #&& rm /opt/polybar-3.5.6.tar.gz && cd /opt/polybar-3.5.6
+#mkdir build; cd /opt/polybar-3.5.6/build && cmake ..; make -j$(nproc); make install
+apt install -y polybar && apt install -y gnome-shell-extension-autohidetopbar;
+sleep 1
+cp  -r $track/polybar /root/.config/polybar 2>>$track/errors.txt && cp -r $track/polybar /home/$DANT/.config/polybar  2>>$track/errors.txt;
+cp /root/.config/polybar/launch.sh /etc/init.d/  2>>$track/errors.txt && chmod 777 /etc/init.d/launch.sh  2>>$track/errors.txt && update-rc.d launch.sh defaults  2>>$track/error.txt;
+sleep 2
+/etc/init.d/launch.sh start 2>/dev/null;
+#gdbus call --session --dest org.gnome.Shell --object-track /org/gnome/Shell --method org.gnome.Shell.Eval string:\'Main.panel.actor.hide();\'
+chmod +x /root/.config/polybar/bin/*.sh;polybar;
+sleep 4
+
+#========================================================================================================================================================
+#                                                                      Misc.
+#========================================================================================================================================================
+
 #Install NordVPN
 echo -e "${BLUE}\n Install NordVPN 嬨  ${NC}"
 wget -O $track/nordvpn.deb https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb?_ga=2.63514733.310161373.1623303705-1134963399.1623303705
@@ -81,7 +135,6 @@ apt install -y  network-manager-strongswan
 apt install -y network-manager-vpnc
 apt install -y network-manager-vpnc-gnome
 
-
 echo -e "${BLUE}\n Trensmission. 褐 ${NC}"
 apt install -y transmission;
 
@@ -93,35 +146,6 @@ apt install -y keepassxc;
 
 echo -e "${BLUE}\n Install Docker.  ${NC}"
 apt install -y docker.io; systemctl enable docker --now;
-
-echo -e "${BLUE}\n PW-10K.  ${NC}"
-#Install powerlevel10k in user
-cd /home/$DANT/ && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git /home/$DANT/powerlevel10k
-sudo echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp $track/p10k.zsh /home/$DANT/.p10k.zsh
-#mv /home/$DANT/.zshrc /home/$DANT/zshrcBACKUP 
-cp $track/zshrc /home/$DANT/.zshrc
-sleep 2
-#Install Oh myTmux
-cd /home/$DANT/ && git clone https://$token@github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
-cp $track/tmux.conf.local /home/$DANT/.tmux.conf.local
-
-#Install powerlevel10k in root
-cd /root && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp $track/p10k.zsh /root/.p10k.zsh
-#mv /root/.zshrc /root/zshrcBACKUP
-cp $track/zshrc /root/.zshrc
-#Install Oh myTmux
-cd /root && git clone https://$token@github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
-cp $track/tmux.conf.local /root/.tmux.conf.local
-
-cd /root && rm .zshrc && rm .tmux.conf.local
-ln -s -f /home/$DANT/.zshrc .zshrc && ln -s -f /home/$DANT/.tmux.conf.local .tmux.conf.local
 
 #Install lsd
 echo -e "${BLUE}\n LSD.  ${NC}"
@@ -179,9 +203,13 @@ apt install -y speedtest-cli;
 
 echo -e "${BLUE}\n Install Tor. 﨩 ${NC}"
 apt install tor -y;
-systemctl start tor;
-apt install -y onionshare;
-systemctl enable tor;
+systemctl start tor;systemctl enable tor;
+
+echo -e "${BLUE}\n OnionShare. 練${NC}"
+apt install -y snapd;
+systemctl enable --now snapd apparmor;
+snap install core
+snap install onionshare
 
 echo -e "${BLUE}\n Install i2p.  ${NC}"
 docker pull geti2p/i2p;
@@ -191,10 +219,10 @@ apt install -y dirsearch;
 
 
 echo -e "${BLUE}\n Install OpenOffice.  ${NC}"
-wget -P $track/ https://iweb.dl.sourceforge.net/project/openofficeorg.mirror/4.1.11/binaries/es/Apache_OpenOffice_4.1.11_Linux_x86-64_install-deb_es.tar.gz;
-tar -xzvf $track/Apache_OpenOffice_4.1.11_Linux_x86-64_install-deb_es.tar.gz;
-cd $track/es/DEBS; dpkg -i *.deb;
-cd $track/es/DEBS/desktop-integration; dpkg -i *.deb; cd $track;
+wget -P $track/ https://cfhcable.dl.sourceforge.net/project/openofficeorg.mirror/4.1.12/binaries/en-US/Apache_OpenOffice_4.1.12_Linux_x86-64_install-deb_en-US.tar.gz;
+tar -xzvf $track/Apache_OpenOffice_4.1.12_Linux_x86-64_install-deb_en-US.tar.gz;
+cd $track/en-US/DEBS; dpkg -i *.deb;
+cd $track/en-US/DEBS/desktop-integration; dpkg -i *.deb; cd $track;
 
 echo -e "${BLUE}\n Install Virtualenv.  ${NC}"
 pip3 install virtualenv;
@@ -207,27 +235,9 @@ apt install -y vlc;
 
 echo -e "${BLUE}\n Install NSearch.  ${NC}"
 git clone https://$token@github.com/jtibaquira/nsearch.git /opt/NSearch;
-#Instalar y ejecutar en virtualenv
 
 echo -e "${BLUE}\n Install VulnScan.  ${NC}"
 git clone https://$token@github.com/scipag/vulscan.git /usr/share/nmap/scripts/vulscan/;
-
-# Install POLYBAR
-echo -e "${BLUE}\n Install Polybar.  ${NC}";
-apt install -y build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev;
-apt install -y libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev;
-#wget -P /opt/ https://github.com/polybar/polybar/releases/download/3.5.6/polybar-3.5.6.tar.gz
-#tar -xf /opt/polybar-3.5.6.tar.gz -C /opt/ #&& rm /opt/polybar-3.5.6.tar.gz && cd /opt/polybar-3.5.6
-#mkdir build; cd /opt/polybar-3.5.6/build && cmake ..; make -j$(nproc); make install
-apt install -y polybar && apt install -y gnome-shell-extension-autohidetopbar;
-sleep 1
-cp  -r $track/polybar /root/.config/polybar 2>>$track/error.txt && cp -r $track/polybar /home/$DANT/.config/polybar  2>>$track/error.txt;
-cp /root/.config/polybar/launch.sh /etc/init.d/  2>>$track/error.txt && chmod 777 /etc/init.d/launch.sh  2>>$track/error.txt && update-rc.d launch.sh defaults  2>>$track/error.txt;
-sleep 2
-/etc/init.d/launch.sh start 2>/dev/null;
-#gdbus call --session --dest org.gnome.Shell --object-track /org/gnome/Shell --method org.gnome.Shell.Eval string:\'Main.panel.actor.hide();\'
-chmod +x /root/.config/polybar/bin/*.sh;
-
 
 cp $track/matrix.sh /bin/matrix.sh; chmod +x /bin/matrix.sh;
 
@@ -263,9 +273,7 @@ docker volume create sonarqube-data
 docker volume create sonarqube-logs
 docker volume create sonarqube-extensions
 
-
 echo -e "${YELLOW}\n Install ForticlientVPN. 嬨 ${NC}"
-
 #Install requeriments FortiClientVPN
 cd $track
 apt-get -y install libdbusmenu-gtk4
@@ -370,7 +378,6 @@ git clone https://$token@github.com/Telefonica/HomePWN.git
 git clone https://$token@github.com/hash3liZer/WiFiBroot.git
 
 git clone https://$token@github.com/FluxionNetwork/fluxion.git
-
 
 }
 
@@ -516,7 +523,6 @@ cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/secforce/sparta.gi
 echo -e "${YELLOW}\nInstall V3n0M-Scanner${NC}"
 cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/v3n0m-Scanner/V3n0M-Scanner.git
 
-
 echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
 apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
 npm install -g btlejuice
@@ -572,7 +578,6 @@ cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/drk1wi/Modlishka.gi
 
 echo -e "${YELLOW}\nInstall ZPhisher${NC}"
 cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/htr-tech/zphisher.git
-
 
 #cd  /opt/Tools/$SOCIAL/; git clone https://github.com/TheSpeedX/TBomb.git
 
@@ -654,8 +659,6 @@ cd  /opt/Tools/$APP/
 git clone https://$token@github.com/s0md3v/XSStrike.git
 git clone https://$token@github.com/almandin/fuxploider.git
 
-
-
 }
 
 
@@ -673,18 +676,18 @@ sleep 0.10
 echo -e "${cyan}  ██║  ██╗██║  ██║███████╗██║      ╚██████╗╚██████╔╝███████║   ██║   ╚██████╔╝██║ ╚═╝ ██║${NC}"
 sleep 0.10
 echo -e "${cyan}  ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝       ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝${NC}"
-echo -e "${YELLOW}                                                                                          By R4wk ${white} ${NC}"                                                                                       
+echo -e "${YELLOW}                                                                                     By R4wk ${white} ${NC}"                                                                                       
 
 }
 
-Banner 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+Banner
 sleep 2 
 Kali 
 sleep 2 
 install 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 AV-Evation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
-wifi 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+wifi 2>/home/$DANT/Downloads/CustomKali/>errors.txt
 sleep 2
 Dos 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
