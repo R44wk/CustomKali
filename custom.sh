@@ -68,7 +68,7 @@ apt -y update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -
 ###############################################################################################################################
 ###############################################################################################################################
 
-install(){
+system(){
 
 echo -e "${BLUE}\n PW-10K.  ${NC}"
 #Install powerlevel10k in user
@@ -108,11 +108,11 @@ apt install -y libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev li
 apt install -y polybar && apt install -y gnome-shell-extension-autohidetopbar;
 sleep 1
 cp  -r $track/polybar /root/.config/polybar 2>>$track/errors.txt && cp -r $track/polybar /home/$DANT/.config/polybar  2>>$track/errors.txt;
-cp /root/.config/polybar/launch.sh /etc/init.d/  2>>$track/errors.txt && chmod 777 /etc/init.d/launch.sh  2>>$track/errors.txt && update-rc.d launch.sh defaults  2>>$track/error.txt;
+cp /root/.config/polybar/launch.sh /etc/init.d/  2>>$track/errors.txt && chmod 777 /etc/init.d/launch.sh  2>>$track/errors.txt && update-rc.d launch.sh defaults  2>>$track/errors.txt;
 sleep 2
 /etc/init.d/launch.sh start 2>/dev/null;
 #gdbus call --session --dest org.gnome.Shell --object-track /org/gnome/Shell --method org.gnome.Shell.Eval string:\'Main.panel.actor.hide();\'
-chmod +x /root/.config/polybar/bin/*.sh;polybar;
+chmod +x /root/.config/polybar/bin/*.sh
 sleep 4
 
 #========================================================================================================================================================
@@ -126,20 +126,17 @@ cd $track/
 apt install ./nordvpn.deb && apt update && apt install nordvpn
 rm $track/nordvpn.deb
 
-echo -e "${BLUE}\n Install OpenVPN. 嬨 ${NC}"
-apt install -y network-manager-openvpn
-apt install -y network-manager-openvpn-gnome
-apt install -y network-manager-pptp
-apt install -y network-manager-pptp-gnome
-apt install -y  network-manager-strongswan
-apt install -y network-manager-vpnc
-apt install -y network-manager-vpnc-gnome
 
 echo -e "${BLUE}\n Trensmission. 褐 ${NC}"
 apt install -y transmission;
 
+
+echo -e "${BLUE}\n Ngrok ${NC}"
+curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
+            
+
 echo -e "${BLUE}\n Feroxbuster.  ${NC}"
-apt install -y feroxbuster;
+#apt install -y feroxbuster;
 
 echo -e "${BLUE}\n Keepass.  ${NC}"
 apt install -y keepassxc;
@@ -167,9 +164,9 @@ wget -O /home/$DANT/Desktop/telegram.tar.xz  https://updates.tdesktop.com/tlinux
 tar -Jxvf /home/$DANT/Desktop/telegram.tar.xz -C /home/$DANT/Desktop/ && rm /home/$DANT/Desktop/telegram.tar.xz;
 
 #Install Visual Studio code
-echo -e "${BLUE}\n VSC. 嗢 ${NC}";
-wget -O $track/visual.deb https://az764295.vo.msecnd.net/stable/b4c1bd0a9b03c749ea011b06c6d2676c8091a70c/code_1.57.0-1623259737_amd64.deb;
-dpkg -i $track/visual.deb; rm $track/visual.deb;
+#echo -e "${BLUE}\n VSC. 嗢 ${NC}";
+#wget -O $track/visual.deb https://az764295.vo.msecnd.net/stable/b4c1bd0a9b03c749ea011b06c6d2676c8091a70c/code_1.57.0-1623259737_amd64.deb;
+#dpkg -i $track/visual.deb; rm $track/visual.deb;
 
 #Instal driver Wifi
 echo -e "${BLUE}\n Install WiFi Realtek 8812AU/8821AU Driver   ${NC}";
@@ -186,37 +183,23 @@ apt install gimp -y;
 echo -e "${BLUE}\n Install Remina.  ${NC}"
 apt-get install remmina -y;
 
-echo -e "${BLUE}\n Install Chrome.  ${NC}"
-wget -P $track/ https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb;
-dpkg -i google-chrome-stable_current_amd64.deb; rm $track/google-chrome-stable_current_amd64.deb;
-
-echo -e "${BLUE}\n Install Nessus. 陋 ${NC}"
-wget -O $track/nessus.deb https://www.tenable.com/downloads/api/v1/public/pages/nessus/downloads/15803/download?i_agree_to_tenable_license_agreement=true;
-dpkg -i $track/nessus.deb; rm $track/nessus.deb;
-/bin/systemctl start nessusd.service;
-
 echo -e "${BLUE}\n Subfinder. 陋 ${NC}";
-apt install -y subfinder;
+#apt install -y subfinder;
 
 echo -e "${BLUE}\n Speddtest. 陋 ${NC}"
 apt install -y speedtest-cli;
 
 echo -e "${BLUE}\n Install Tor. 﨩 ${NC}"
-apt install tor -y;
 systemctl start tor;systemctl enable tor;
 
 echo -e "${BLUE}\n OnionShare. 練${NC}"
 apt install -y snapd;
 systemctl enable --now snapd apparmor;
-snap install core
-snap install onionshare
+snap install core;
+snap install onionshare;snap remove onionshare;snap install onionshare
 
 echo -e "${BLUE}\n Install i2p.  ${NC}"
 docker pull geti2p/i2p;
-
-echo -e "${BLUE}\n Install Dirsearch.  ${NC}"
-apt install -y dirsearch;
-
 
 echo -e "${BLUE}\n Install OpenOffice.  ${NC}"
 wget -P $track/ https://cfhcable.dl.sourceforge.net/project/openofficeorg.mirror/4.1.12/binaries/en-US/Apache_OpenOffice_4.1.12_Linux_x86-64_install-deb_en-US.tar.gz;
@@ -241,9 +224,6 @@ git clone https://$token@github.com/scipag/vulscan.git /usr/share/nmap/scripts/v
 
 cp $track/matrix.sh /bin/matrix.sh; chmod +x /bin/matrix.sh;
 
-#Install BETTERCAP
-echo -e "${YELLOW}\n Install Bettercap.  ${NC}"
-apt install -y bettercap;
 
 #Install Discover
 echo -e "${YELLOW}\n Install Discover.  ${NC}"
@@ -259,10 +239,13 @@ make clean && make all
 
 #Install Debugger
 
-echo -e "${YELLOW}\n Install edb-debugger.  ${NC}"
-apt install -y edb-debugger
+echo -e "${YELLOW}\n Install edbPeda-debugger.  ${NC}"
+git clone https://$token@github.com/longld/peda.git ~/peda
+echo "source ~/peda/peda.py" >> ~/.gdbinit
+apt install -y edb-debugger && apt install -y gdb-peda
 
 #Install VMWare-Tools
+echo -e "${YELLOW}\n Install VMWare-Tools.  ${NC}"
 apt install -y --reinstall open-vm-tools-desktop
 
 echo -e "${YELLOW}\n Install Sonarqube.  ${NC}"
@@ -299,7 +282,6 @@ echo -e "${YELLOW}\n Install UberTooth.  ${NC}"
 apt update && sudo apt install cmake libusb-1.0-0-dev git make gcc g++ libbluetooth-dev wget build-essential pkg-config python3-numpy python3-qtpy python3-distutils python3-setuptools wireshark wireshark-dev libwireshark-dev python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev -y
 
 
-
 }
 
 ###############################################################################################################################
@@ -316,32 +298,9 @@ cd /opt/Tools/$AV; git clone https://$token@github.com/Screetsec/TheFatRat.git
 cd /opt/Tools/$AV; git clone https://$token@github.com/EgeBalci/HERCULES.git
 cd /opt/Tools/$AV; git clone https://$token@github.com/outflanknl/EvilClippy.git
 cd /opt/Tools/$AV; git clone https://$token@ggithub.com/tokyoneon/chimera
+cd /opt/Tools/$AV; git clone https://$token@github.com/devploit/XORpass
+cd /opt/Tools/$AV; git clone https://$token@github.com/abdulkadir-gungor/JPGtoMalware.git
 
-echo -e "${cyan}\n Install Chimera.${NC}" 
-cd /opt/Tools/$AV/Chimera
-apt-get update && sudo apt-get install -Vy sed xxd libc-bin curl jq perl gawk grep coreutils git
-chmod +x; chimera.sh
-
-echo -e "${cyan}\n Install EvilClippy.${NC}"
-cd /opt/Tools/$AV/EvilClippy
-mcs /reference:OpenMcdf.dll,System.IO.Compression.FileSystem.dll /out:EvilClippy.exe *.cs
-
-echo -e "${cyan}\n Install HERCULES.${NC}"
-cd /opt/Tools/$AV/HERCULES
-apt install golang -y; go get github.com/fatih/color; go run Setup.go; chmod +x HERCULES
-
-echo -e "${cyan}\nInstall shellter.${NC}"
-cd /opt/Tools/$AV/
-apt-get install shellter -y
-
-echo -e "${cyan}\nInstall Phantom-Evasion.${NC}"
-cd /opt/Tools/$AV/Phantom-Evasion; python3 phantom-evasion.py --setup
-
-git clone https://$token@github.com/devploit/XORpass
-
-echo -e "${cyan}\nInstall JPGtoMalware.${NC}"
-cd /opt/Tools/$AV/
-gti clone https://$token@github.com/abdulkadir-gungor/JPGtoMalware.git
 }
 
 ###############################################################################################################################
@@ -364,7 +323,6 @@ cd /opt/Tools/$WIFI/HT-WPS-Breaker; chmod +x HT-WB.sh
 echo -e "${YELLOW}\nInstall Wifite2.${NC}"
 cd /opt/Tools/$WIFI
 git clone https://$token@github.com/derv82/wifite2.git
-cd /opt/Tools/$WIFI/wifite2
 
 echo -e "${YELLOW}\nInstall wirespy.${NC}"
 cd /opt/Tools/$WIFI
@@ -389,7 +347,7 @@ git clone https://$token@github.com/FluxionNetwork/fluxion.git
 Dos(){
 
 echo -e "${YELLOW}\nInstall Bash-tls-reneg-attack${NC}"
-cd  /opt/Tools/$DOS;git clone https://$token@github.com/c826/bash-tls-reneg-attack.git
+cd  /opt/Tools/$DOS;git clone https://$token@github.com/XDLDCG/bash-tls-reneg-attack.git
 cd /opt/Tools/$DOS/bash-tls-reneg-attack; chmod +x tls-reneg.sh
 
 echo -e "${YELLOW}\ninstall GoldenEye${NC}"
@@ -415,7 +373,7 @@ cd /opt/Tools/$DOS/XERXES; gcc -o xerxes xerxes.c
 
 echo -e "${YELLOW}\nInstall Zambie${NC}"
 cd  /opt/Tools/$DOS;git clone https://$token@github.com/iTzPrime/zambie.git
-cd /opt/Tools/$DOS/zambie; chmod +x Installer.sh; ./Installer.sh
+cd /opt/Tools/$DOS/zambie; chmod +x Installer.sh
 }
 
 ###############################################################################################################################
@@ -441,18 +399,10 @@ cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/byt3bl33d3r/DeathSta
 echo -e "${YELLOW}\nEasy-P${NC}"
 cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/cheetz/Easy-P.git
 
-echo -e "${YELLOW}\nhtbenum${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/SolomonSklash/htbenum.git
-cd /opt/Tools/$EXPLOIT/htbtenum\; chmod +x htbenum.sh
-
 echo -e "${YELLOW}\nIbombshell${NC}"
 cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/Telefonica/ibombshell.git
 cd  /opt/Tools/$EXPLOIT/ibombshell
 pip install termcolor gnureadline pynput
-
-echo -e "${YELLOW}\nImpacket${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/SecureAuthCorp/impacket.git
-cd  /opt/Tools/$EXPLOIT/impacket pip3 install
 
 echo -e "${YELLOW}\nJexboss${NC}"
 cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/joaomatosf/jexboss.git
@@ -460,12 +410,9 @@ cd  /opt/Tools/$EXPLOIT/jexboss ;pip install -r requires.txt
 
 echo -e "${YELLOW}\nMITMF${NC}"
 cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/byt3bl33d3r/MITMf.git
-apt-get install -y python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone-dev libffi-dev file
-cd  /opt/Tools/$EXPLOIT/MITMf && git submodule init && git submodule update --recursive
-pip install -r requirements.txt
-
-#echo -e "${YELLOW}PolarBearRepo${NC}"
-#cd  /opt/Tools/$EXPLOIT;git clone
+#apt-get install -y python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone-dev libffi-dev file
+#cd  /opt/Tools/$EXPLOIT/MITMf && git submodule init && git submodule update --recursive
+#pip install -r requirements.txt
 
 echo -e "${YELLOW}\nRouterSploit${NC}"
 cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/threat9/routersploit.git
@@ -514,7 +461,7 @@ cd  /opt/Tools/$FRAMEWORK; git clone https://$token@github.com/SpiderLabs/jboss-
 
 echo -e "${YELLOW}\nInstall ZSC${NC}"
 cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/OWASP/ZSC.git
-cd /opt/Tools/$FRAMEWORK/ZSC; python installer.py
+
 
 echo -e "${YELLOW}\nInstall Sparta${NC}"
 apt install python3-sqlalchemy python3-pyqt5 wkhtmltopdf ldap-utils rwho rsh-client x11-apps finger -y
@@ -542,8 +489,6 @@ echo -e "${YELLOW}\nInstall Logontracer${NC}"
 cd  /opt/Tools/$INCIDENT; git clone https://$token@github.com/JPCERTCC/LogonTracer.git
 cd  /opt/Tools/$INCIDENT/LogonTracer;  docker pull jpcertcc/docker-logontracer
 
-echo -e "${YELLOW}\nInstall Wesng${NC}"
-cd  /opt/Tools/$INCIDENT; git clone  https://$token@github.com/bitsadmin/wesng.git
 
 }
 
@@ -563,10 +508,6 @@ cd  /opt/Tools/$SOCIAL/CACTUSTORCH_DDEAUTO; git clone https://github.com/mdsecac
 echo -e "${YELLOW}\nInstall Cuteit${NC}"
 cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/D4Vinci/Cuteit.git
 
-echo -e "${YELLOW}\nInstall HiddenEye${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/DarkSecDevelopers/HiddenEye-Legacy.git
-cd  /opt/Tools/$SOCIAL/HiddenEye-Legacy; pip install -r requirements.txt
-
 echo -e "${YELLOW}\nInstall IP-Obfuscator${NC}"
 cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/findneo/IP-Obfuscator.git
 
@@ -579,7 +520,11 @@ cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/drk1wi/Modlishka.gi
 echo -e "${YELLOW}\nInstall ZPhisher${NC}"
 cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/htr-tech/zphisher.git
 
-#cd  /opt/Tools/$SOCIAL/; git clone https://github.com/TheSpeedX/TBomb.git
+echo -e "${YELLOW}\nInstall Hidden-Eye${NC}"
+cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/r3x07/HiddenEye.git
+
+echo -e "${YELLOW}\nInstall PyPhisher${NC}"
+cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/KasRoudra/PyPhisher
 
 }
 
@@ -589,7 +534,7 @@ cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/htr-tech/zphisher.g
 
 Osint(){
 
-echo -e "${YELLOW}\n Download Tools OSINT ${NC}"
+echo -e "${YELLOW}\nDownload Tools OSINT ${NC}"
 cd  /opt/Tools/$OSINT/
 
 git clone https://$token@github.com/stark0de/nginxpwner.git
@@ -615,8 +560,7 @@ git clone https://$token@github.com/m4ll0k/Infoga.git infoga
 git clone https://$token@github.com/adnane-X-tebbaa/Katana.git
 git clone https://$token@github.com/adnane-X-tebbaa/GRecon.git
 git clone https://$token@github.com/guelfoweb/knock.git
-git clone https://$token@github.com/4w4k3/KnockMail.git
-git clone https://$token@github.com/m4ll0k/Konan.git konan
+git clone https://$token@github.com/4w4k3/KnockMail.git 
 git clone https://$token@github.com/davidtavarez/pwndb
 git clone https://$token@github.com/TunisianEagles/quasar.git
 git clone https://$token@github.com/lolwaleet/ReverseIP.git
@@ -653,7 +597,7 @@ git clone https://$token@github.com/mubix/IOXIDResolver.git
 
 App(){
 
-echo -e "${YELLOW}\n Download Tools AppVulnerability ${NC}"
+echo -e "${YELLOW}\nDownload Tools AppVulnerability ${NC}"
 cd  /opt/Tools/$APP/
 
 git clone https://$token@github.com/s0md3v/XSStrike.git
@@ -684,7 +628,7 @@ Banner
 sleep 2 
 Kali 
 sleep 2 
-install 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+system 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 AV-Evation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
 wifi 2>/home/$DANT/Downloads/CustomKali/>errors.txt
@@ -700,17 +644,14 @@ sleep 2
 Social 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
 Osint 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-sleep2
+sleep 2
 App 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+echo -e "\n"
 nordvpn set dns 1.1.1.1 8.8.8.8 2>>errors.txt #set DNS in VPN
 echo -e "${BLUE}\nUpdating locate database.${NC}"
 updatedb 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
 source /root/.zshrc 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-slepp 5
+sleep 5
 echo -e "${red}\nDone...${NC}"
 exit
-
-
-
-
