@@ -350,9 +350,6 @@ echo -e "${YELLOW}\nInstall Bash-tls-reneg-attack${NC}"
 cd  /opt/Tools/$DOS;git clone https://$token@github.com/XDLDCG/bash-tls-reneg-attack.git
 cd /opt/Tools/$DOS/bash-tls-reneg-attack; chmod +x tls-reneg.sh
 
-echo -e "${YELLOW}\ninstall GoldenEye${NC}"
-cd  /opt/Tools/$DOS;git clone https://$token@github.com/jseidl/GoldenEye.git
-
 echo -e "${YELLOW}\ninstall Memcrashed-DDoS${NC}"
 cd  /opt/Tools/$DOS;git clone https://$token@github.com/649/Memcrashed-DDoS-Exploit.git
 cd /opt/Tools/$DOS/Memcrashed-DDoS-Exploit
@@ -463,10 +460,6 @@ echo -e "${YELLOW}\nInstall ZSC${NC}"
 cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/OWASP/ZSC.git
 
 
-echo -e "${YELLOW}\nInstall Sparta${NC}"
-apt install python3-sqlalchemy python3-pyqt5 wkhtmltopdf ldap-utils rwho rsh-client x11-apps finger -y
-cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/secforce/sparta.git; cp sparta /usr/bin
-
 echo -e "${YELLOW}\nInstall V3n0M-Scanner${NC}"
 cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/v3n0m-Scanner/V3n0M-Scanner.git
 
@@ -488,8 +481,6 @@ Incident(){
 echo -e "${YELLOW}\nInstall Logontracer${NC}"
 cd  /opt/Tools/$INCIDENT; git clone https://$token@github.com/JPCERTCC/LogonTracer.git
 cd  /opt/Tools/$INCIDENT/LogonTracer;  docker pull jpcertcc/docker-logontracer
-
-
 }
 
 ###############################################################################################################################
@@ -655,3 +646,7 @@ source /root/.zshrc 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 5
 echo -e "${red}\nDone...${NC}"
 exit
+
+
+
+
