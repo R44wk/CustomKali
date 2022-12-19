@@ -279,7 +279,7 @@ apt install -y adb
 
 echo -e "${YELLOW}\n Install UberTooth.  ${NC}"
 
-apt update && sudo apt install cmake libusb-1.0-0-dev git make gcc g++ libbluetooth-dev wget build-essential pkg-config python3-numpy python3-qtpy python3-distutils python3-setuptools wireshark wireshark-dev libwireshark-dev python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev -y
+#apt update && sudo apt install cmake libusb-1.0-0-dev git make gcc g++ libbluetooth-dev wget build-essential pkg-config python3-numpy python3-qtpy python3-distutils python3-setuptools wireshark wireshark-dev libwireshark-dev python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev -y
 
 
 }
@@ -576,9 +576,11 @@ git clone https://$token@github.com/gocaio/goca.git
 git clone https://$token@github.com/liamg/furious.git
 git clone https://$token@github.com/iojw/socialscan.git
 git clone https://$token@github.com/Dheerajmadhukar/karma_v2.git
-git clone https://$token@github.com/smicallef/spiderfoot.git
+#git clone https://$token@github.com/smicallef/spiderfoot.git
 git clone https://$token@github.com/BishopFox/GitGot.git
 git clone https://$token@github.com/mubix/IOXIDResolver.git
+git clone https://$token@github.com/m0rtem/CloudFail.git
+git clone https://$token@github.com/ropnop/kerbrute.git
 }
 
 
@@ -646,7 +648,3 @@ source /root/.zshrc 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 5
 echo -e "${red}\nDone...${NC}"
 exit
-
-
-
-
