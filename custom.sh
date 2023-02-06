@@ -242,7 +242,7 @@ make clean && make all
 echo -e "${YELLOW}\n Install edbPeda-debugger.  ${NC}"
 git clone https://$token@github.com/longld/peda.git ~/peda
 echo "source ~/peda/peda.py" >> ~/.gdbinit
-apt install -y edb-debugger && apt install -y gdb-peda
+apt install -y edb-debugger && apt install -y gdb-peda && apt install -y gdb
 
 #Install VMWare-Tools
 echo -e "${YELLOW}\n Install VMWare-Tools.  ${NC}"
@@ -648,3 +648,7 @@ source /root/.zshrc 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 5
 echo -e "${red}\nDone...${NC}"
 exit
+
+
+
+
