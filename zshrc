@@ -191,13 +191,17 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias ls="/usr/bin/lsd -l"
-alias cat='/usr/bin/bat'
+alias cat='/usr/bin/batcat'
 alias i2p='docker run -p 127.0.0.1:4444:4444 -p 127.0.0.1:6668:6668 -p 127.0.0.1:7657:7657 geti2p/i2p &'
 alias color='for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done'
 alias nc='rlwrap nc'
 alias polybar='/etc/init.d/launch.sh start 2>/dev/null'
-
+alias firefox='xhost +local: && XAUTHORITY=/root/Xauthority sudo firefox 2>/dev/null &'
+alias sonarqube='docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 -v sonarqube-conf:/opt/sonarqube/conf -v sonarqube-data:/opt/sonarqube/data -v sonarqube-logs:/opt/sonarqube/logs -v sonarqube-extensions:/opt/sonarqube/extensions sonarqube'
 #alias htb='openvpn /root/Documents/HTB/Rumpels.ovpn &'
+alias tor-browser='su r4wk -c "/home/r4wk/Desktop/tor-browser/start-tor-browser.desktop" &'
+alias update='apt -y update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb'
+
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
