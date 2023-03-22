@@ -70,50 +70,7 @@ apt -y update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -
 
 system(){
 
-echo -e "${BLUE}\n PW-10K.  ${NC}"
-#Install powerlevel10k in user
-cd /home/$DANT/ && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git /home/$DANT/powerlevel10k
-sudo echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp $track/p10k.zsh /home/$DANT/.p10k.zsh
-#mv /home/$DANT/.zshrc /home/$DANT/zshrcBACKUP 
-cp $track/zshrc /home/$DANT/.zshrc
-sleep 2
-#Install Oh myTmux
-cd /home/$DANT/ && git clone https://$token@github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
-cp $track/tmux.conf.local /home/$DANT/.tmux.conf.local
-#Install Oh myTmux in root user
-cd /root && git clone https://$token@github.com/gpakosz/.tmux.git
-ln -s -f .tmux/.tmux.conf
-cp .tmux/.tmux.conf.local .
-cp $track/tmux.conf.local /root/.tmux.conf.local
 
-cd /root && rm .zshrc && rm .tmux.conf.local
-ln -s -f /home/$DANT/.zshrc .zshrc && ln -s -f /home/$DANT/.tmux.conf.local .tmux.conf.local
-
-#Install powerlevel10k in root
-cd /root && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp $track/p10k.zsh /root/.p10k.zsh
-cp $track/zshrc /root/.zshrc
-
-# Install POLYBAR
-echo -e "${BLUE}\n Install Polybar.  ${NC}";
-apt install -y build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev;
-apt install -y libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev;
-#wget -P /opt/ https://github.com/polybar/polybar/releases/download/3.5.6/polybar-3.5.6.tar.gz
-#tar -xf /opt/polybar-3.5.6.tar.gz -C /opt/ #&& rm /opt/polybar-3.5.6.tar.gz && cd /opt/polybar-3.5.6
-#mkdir build; cd /opt/polybar-3.5.6/build && cmake ..; make -j$(nproc); make install
-apt install -y polybar && apt install -y gnome-shell-extension-autohidetopbar;
-sleep 1
-cp  -r $track/polybar /root/.config/polybar 2>>$track/errors.txt && cp -r $track/polybar /home/$DANT/.config/polybar  2>>$track/errors.txt;
-cp /root/.config/polybar/launch.sh /etc/init.d/  2>>$track/errors.txt && chmod 777 /etc/init.d/launch.sh  2>>$track/errors.txt && update-rc.d launch.sh defaults  2>>$track/errors.txt;
-sleep 2
-/etc/init.d/launch.sh start 2>/dev/null;
-#gdbus call --session --dest org.gnome.Shell --object-track /org/gnome/Shell --method org.gnome.Shell.Eval string:\'Main.panel.actor.hide();\'
-chmod +x /root/.config/polybar/bin/*.sh
-sleep 4
 
 #========================================================================================================================================================
 #                                                                      Misc.
@@ -135,11 +92,6 @@ echo -e "${BLUE}\n Ngrok ${NC}"
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
             
 
-cho -e "${BLUE}\n Name-that-hash.  ${NC}"
-pip3 install name-that-hash
-
-echo -e "${BLUE}\n Keepass.  ${NC}"
-apt install -y keepassxc;
 
 echo -e "${BLUE}\n Install Docker.  ${NC}"
 apt install -y docker.io; systemctl enable docker --now;
@@ -147,21 +99,18 @@ apt install -y docker.io; systemctl enable docker --now;
 #Install lsd
 echo -e "${BLUE}\n LSD.  ${NC}"
 cd $track/
-wget https://$token@github.com/Peltoche/lsd/releases/download/0.20.1/lsd-musl_0.20.1_amd64.deb
-dpkg -i lsd-musl_0.20.1_amd64.deb
+wget https://github.com/Peltoche/lsd/releases/download/0.23.0/lsd-musl_0.23.0_arm64.deb
+dpkg -i lsd-musl_0.23.0_arm64.deb
 
 #Install bat
 echo -e "${BLUE}\n BAT.  ${NC}"
-wget https://$token@github.com/sharkdp/bat/releases/download/v0.18.1/bat_0.18.1_amd64.deb; dpkg -i bat_0.18.1_amd64.deb
+wget https://github.com/sharkdp/bat/releases/download/v0.22.0/bat_0.22.0_arm64.deb; dpkg -i bat_0.22.0_arm64.deb
 
 
 echo -e "${BLUE}\n rlwrap.  ${NC}"
 apt install rlwrap -y; 
 
-#Install Telegram
-echo -e "${BLUE}\n Telegram.  ${NC}";
-wget -O /home/$DANT/Desktop/telegram.tar.xz  https://updates.tdesktop.com/tlinux/tsetup.3.5.2.tar.xz;
-tar -Jxvf /home/$DANT/Desktop/telegram.tar.xz -C /home/$DANT/Desktop/ && rm /home/$DANT/Desktop/telegram.tar.xz;
+
 
 #Instal driver Wifi
 echo -e "${BLUE}\n Install WiFi Realtek 8812AU/8821AU Driver   ${NC}";
@@ -172,14 +121,10 @@ apt install -y dkms;
 make dkms_remove; sleep 2;
 make dkms_install; cd $track/
 
-echo -e "${BLUE}\n Install GIMP   ${NC}";
-apt install gimp -y;
 
 echo -e "${BLUE}\n Install Remina.  ${NC}"
 apt-get install remmina -y;
 
-echo -e "${BLUE}\n Subfinder. 陋 ${NC}";
-#apt install -y subfinder;
 
 echo -e "${BLUE}\n Speddtest. 陋 ${NC}"
 apt install -y speedtest-cli;
@@ -187,29 +132,12 @@ apt install -y speedtest-cli;
 echo -e "${BLUE}\n Install Tor. 﨩 ${NC}"
 systemctl start tor;systemctl enable tor;
 
-echo -e "${BLUE}\n OnionShare. 練${NC}"
-apt install -y snapd;
-systemctl enable --now snapd apparmor;
-snap install core;
-snap install onionshare;snap remove onionshare;snap install onionshare
-
-echo -e "${BLUE}\n Install i2p.  ${NC}"
-docker pull geti2p/i2p;
-
-echo -e "${BLUE}\n Install OpenOffice.  ${NC}"
-wget -P $track/ https://cfhcable.dl.sourceforge.net/project/openofficeorg.mirror/4.1.12/binaries/en-US/Apache_OpenOffice_4.1.12_Linux_x86-64_install-deb_en-US.tar.gz;
-tar -xzvf $track/Apache_OpenOffice_4.1.12_Linux_x86-64_install-deb_en-US.tar.gz;
-cd $track/en-US/DEBS; dpkg -i *.deb;
-cd $track/en-US/DEBS/desktop-integration; dpkg -i *.deb; cd $track;
 
 echo -e "${BLUE}\n Install Virtualenv.  ${NC}"
 pip3 install virtualenv;
 
 echo -e "${BLUE}\n Install Go. ﳑ ${NC}"
 apt install -y golang;
-
-echo -e "${BLUE}\n Install VLC.  ${NC}"
-apt install -y vlc;
 
 echo -e "${BLUE}\n Install NSearch.  ${NC}"
 git clone https://$token@github.com/jtibaquira/nsearch.git /opt/NSearch;
@@ -220,11 +148,6 @@ git clone https://$token@github.com/scipag/vulscan.git /usr/share/nmap/scripts/v
 cp $track/matrix.sh /bin/matrix.sh; chmod +x /bin/matrix.sh;
 
 
-#Install Discover
-echo -e "${YELLOW}\n Install Discover.  ${NC}"
-cd /opt; git clone https://$token@github.com/leebaird/discover.git
-cd /opt/discover; chmod +x update.sh; ./update.sh
-
 #Install Proxmark3
 echo -e "${YELLOW}\n Install Proxmark3.  ${NC}"
 apt install -y git build-essential readline-common libreadline-dev gcc-arm-none-eabi libusb-0.1-4 libusb-dev libncurses-dev perl pkg-config libpcsclite-dev pcscd
@@ -232,50 +155,9 @@ cd /opt; git clone https://$token@github.com/Proxmark/proxmark3.git
 cd proxmark3
 make clean && make all
 
-#Install Debugger
-
-echo -e "${YELLOW}\n Install edbPeda-debugger.  ${NC}"
-git clone https://$token@github.com/longld/peda.git ~/peda
-echo "source ~/peda/peda.py" >> ~/.gdbinit
-apt install -y edb-debugger && apt install -y gdb-peda && apt install -y gdb
-
-#Install VMWare-Tools
-echo -e "${YELLOW}\n Install VMWare-Tools.  ${NC}"
-apt install -y --reinstall open-vm-tools-desktop
-
-echo -e "${YELLOW}\n Install Sonarqube.  ${NC}"
-
-docker pull sonarqube
-docker volume create sonarqube-conf 
-docker volume create sonarqube-data
-docker volume create sonarqube-logs
-docker volume create sonarqube-extensions
-
-echo -e "${YELLOW}\n Install ForticlientVPN. 嬨 ${NC}"
-#Install requeriments FortiClientVPN
-cd $track
-apt-get -y install libdbusmenu-gtk4
-apt-get -y install libgconf-2-4
-curl -p --insecure "http://ftp.br.debian.org/debian/pool/main/libi/libindicator/libindicator7_0.5.0-4_amd64.deb" --output libindicator7_0.5.0-4_amd64.deb
-dpkg -i libindicator7_0.5.0-4_amd64.deb
-
-#curl -p --insecure "http://ftp.de.debian.org/debian/pool/main/liba/libappindicator/libappindicator1_0.4.92-3.1_amd64.deb" --output libappindicator1_0.4.92-8_amd64.deb
-#dpkg -i libappindicator1_0.4.92-8_amd64.deb
-
-#Install Forticlient following steps -> https://www.fortinet.com/support/product-downloads/linux
-
-
-wget -c 'https://hadler.me/files/forticlient-sslvpn_4.4.2333-1_amd64.deb'; dpkg -i forticlient-sslvpn_4.4.2333-1_amd64.deb
-
-
-
-echo -e "${YELLOW}\n Install ADB-Tools.  ${NC}"
-apt install -y adb
-
 echo -e "${YELLOW}\n Install UberTooth.  ${NC}"
 
-#apt update && sudo apt install cmake libusb-1.0-0-dev git make gcc g++ libbluetooth-dev wget build-essential pkg-config python3-numpy python3-qtpy python3-distutils python3-setuptools wireshark wireshark-dev libwireshark-dev python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev -y
-
+apt update && sudo apt install cmake libusb-1.0-0-dev git make gcc g++ libbluetooth-dev wget build-essential pkg-config python3-numpy python3-qtpy python3-distutils python3-setuptools wireshark wireshark-dev libwireshark-dev python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev -y
 
 }
 
@@ -332,41 +214,12 @@ git clone https://$token@github.com/hash3liZer/WiFiBroot.git
 
 git clone https://$token@github.com/FluxionNetwork/fluxion.git
 
+echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
+apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
+npm install -g btlejuice
+
 }
 
-
-###############################################################################################################################
-######################################################### DoS  ################################################################
-###############################################################################################################################
-
-Dos(){
-
-echo -e "${YELLOW}\nInstall Bash-tls-reneg-attack${NC}"
-cd  /opt/Tools/$DOS;git clone https://$token@github.com/XDLDCG/bash-tls-reneg-attack.git
-cd /opt/Tools/$DOS/bash-tls-reneg-attack; chmod +x tls-reneg.sh
-
-echo -e "${YELLOW}\ninstall Memcrashed-DDoS${NC}"
-cd  /opt/Tools/$DOS;git clone https://$token@github.com/649/Memcrashed-DDoS-Exploit.git
-cd /opt/Tools/$DOS/Memcrashed-DDoS-Exploit
-pip3 install scapy;pip3 install shodan
-docker build -t memcrashed .
-
-echo -e "${YELLOW}\nInstall Pentmenu${NC}"
-cd  /opt/Tools/$DOS;git clone https://$token@github.com/GinjaChris/pentmenu.git
-
-echo -e "${YELLOW}\nInstall Saddam${NC}"
-cd  /opt/Tools/$DOS;git clone https://$token@github.com/OffensivePython/Saddam.git
-cd /opt/Tools/$DOS/Saddam
-pip install pinject
-
-echo -e "${YELLOW}\nInstall XERXES${NC}"
-cd  /opt/Tools/$DOS;git clone https://$token@github.com/XCHADXFAQ77X/XERXES.git
-cd /opt/Tools/$DOS/XERXES; gcc -o xerxes xerxes.c
-
-echo -e "${YELLOW}\nInstall Zambie${NC}"
-cd  /opt/Tools/$DOS;git clone https://$token@github.com/iTzPrime/zambie.git
-cd /opt/Tools/$DOS/zambie; chmod +x Installer.sh
-}
 
 ###############################################################################################################################
 ##################################################### Exploit #################################################################
@@ -402,9 +255,6 @@ cd  /opt/Tools/$EXPLOIT/jexboss ;pip install -r requires.txt
 
 echo -e "${YELLOW}\nMITMF${NC}"
 cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/byt3bl33d3r/MITMf.git
-#apt-get install -y python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone-dev libffi-dev file
-#cd  /opt/Tools/$EXPLOIT/MITMf && git submodule init && git submodule update --recursive
-#pip install -r requirements.txt
 
 echo -e "${YELLOW}\nRouterSploit${NC}"
 cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/threat9/routersploit.git
@@ -458,25 +308,14 @@ cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/OWASP/ZSC.git
 echo -e "${YELLOW}\nInstall V3n0M-Scanner${NC}"
 cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/v3n0m-Scanner/V3n0M-Scanner.git
 
-echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
-apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
-npm install -g btlejuice
+
 
 echo -e "${YELLOW}\nInstall MobSF${NC}"
 git clone https://$token@github.com/MobSF/Mobile-Security-Framework-MobSF.git
 
 }
 
-###############################################################################################################################
-##################################################### Incident ################################################################
-###############################################################################################################################
 
-Incident(){
-
-echo -e "${YELLOW}\nInstall Logontracer${NC}"
-cd  /opt/Tools/$INCIDENT; git clone https://$token@github.com/JPCERTCC/LogonTracer.git
-cd  /opt/Tools/$INCIDENT/LogonTracer;  docker pull jpcertcc/docker-logontracer
-}
 
 ###############################################################################################################################
 ##################################################### IngSocial ###############################################################
@@ -511,9 +350,6 @@ cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/r3x07/HiddenEye.git
 
 echo -e "${YELLOW}\nInstall PyPhisher${NC}"
 cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/KasRoudra/PyPhisher
-
-echo -e "${YELLOW}\nInstall Evilgnix2${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/kgretzky/evilginx2.git
 
 }
 
@@ -574,7 +410,6 @@ git clone https://$token@github.com/gocaio/goca.git
 git clone https://$token@github.com/liamg/furious.git
 git clone https://$token@github.com/iojw/socialscan.git
 git clone https://$token@github.com/Dheerajmadhukar/karma_v2.git
-#git clone https://$token@github.com/smicallef/spiderfoot.git
 git clone https://$token@github.com/BishopFox/GitGot.git
 git clone https://$token@github.com/mubix/IOXIDResolver.git
 git clone https://$token@github.com/m0rtem/CloudFail.git
@@ -615,6 +450,8 @@ echo -e "${YELLOW}                                                              
 
 }
 
+
+
 Banner
 sleep 2 
 Kali 
@@ -624,13 +461,9 @@ AV-Evation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
 wifi 2>>/home/$DANT/Downloads/CustomKali/>errors.txt
 sleep 2
-Dos 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-sleep 2 
 Exploit 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 apt update -y && apt upgrade 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 Framework 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-sleep 2 
-Incident 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
 Social 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
@@ -642,6 +475,9 @@ nordvpn set dns 1.1.1.1 8.8.8.8 2>>errors.txt #set DNS in VPN
 echo -e "${BLUE}\nUpdating locate database.${NC}"
 updatedb 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
+cd /root && rm .zshrc
+cp $track/zshrc /root/.zshrc
+ln -s -f /home/$DANT/.zshrc .zshrc
 source /root/.zshrc 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 5
 echo -e "${red}\nDone...${NC}"

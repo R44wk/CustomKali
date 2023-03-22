@@ -11,16 +11,17 @@ lightgreen='\e[1;32m'
 white='\e[1;37m'
 red='\e[1;31m'
 purpura='\e[0;35m'
-AV="AV-Evation"
-DOS="DoS-attack"
-EXPLOIT="Exploit"
-FRAMEWORK="Framework"
-INCIDENT="Incident"
-OSINT="OSINT"
-SOCIAL="Social-Ing"
-APP="Vulneravility-App"
-SHELL="Webshell"
-WIFI="WiFi"
+
+reconnaissance="Reconnaissance"
+weaponization="Weaponization"
+delivery="Delivery"
+explotation="Explotation_Scalation_C&C"
+evation="Defense_Evasion"
+exfiltration="Exfiltration"
+wifi="WiFi_BLE"
+
+
+
 token="" 
 track=$(pwd)
 
@@ -29,7 +30,7 @@ track=$(pwd)
 ###############################################################################################################################
 #create tracks
 mkdir /opt/Tools;
-mkdir /opt/Tools/{$DOS,$AV,$EXPLOIT,$FRAMEWORK,$INCIDENT,$OSINT,$SOCIAL,$APP,$SHELL,$WIFI};
+mkdir /opt/Tools/{$reconnaissance,$weaponization,$delivery,$explotation,$evation,$exfiltration,$WIFI};
 
 clear;
 
@@ -135,14 +136,25 @@ echo -e "${BLUE}\n Ngrok ${NC}"
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
             
 
-cho -e "${BLUE}\n Name-that-hash.  ${NC}"
+echo -e "${BLUE}\n Name-that-hash.  ${NC}"
 pip3 install name-that-hash
 
-echo -e "${BLUE}\n Keepass.  ${NC}"
-apt install -y keepassxc;
 
 echo -e "${BLUE}\n Install Docker.  ${NC}"
-apt install -y docker.io; systemctl enable docker --now;
+apt-get remove docker docker-engine docker.io containerd runc;
+apt install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+mkdir -m 0755 -p /etc/apt/keyrings;
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get -y update;
+apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin;
+systemctl enable docker --now;
 
 #Install lsd
 echo -e "${BLUE}\n LSD.  ${NC}"
@@ -178,9 +190,6 @@ apt install gimp -y;
 echo -e "${BLUE}\n Install Remina.  ${NC}"
 apt-get install remmina -y;
 
-echo -e "${BLUE}\n Subfinder. 陋 ${NC}";
-#apt install -y subfinder;
-
 echo -e "${BLUE}\n Speddtest. 陋 ${NC}"
 apt install -y speedtest-cli;
 
@@ -195,12 +204,6 @@ snap install onionshare;snap remove onionshare;snap install onionshare
 
 echo -e "${BLUE}\n Install i2p.  ${NC}"
 docker pull geti2p/i2p;
-
-echo -e "${BLUE}\n Install OpenOffice.  ${NC}"
-wget -P $track/ https://cfhcable.dl.sourceforge.net/project/openofficeorg.mirror/4.1.12/binaries/en-US/Apache_OpenOffice_4.1.12_Linux_x86-64_install-deb_en-US.tar.gz;
-tar -xzvf $track/Apache_OpenOffice_4.1.12_Linux_x86-64_install-deb_en-US.tar.gz;
-cd $track/en-US/DEBS; dpkg -i *.deb;
-cd $track/en-US/DEBS/desktop-integration; dpkg -i *.deb; cd $track;
 
 echo -e "${BLUE}\n Install Virtualenv.  ${NC}"
 pip3 install virtualenv;
@@ -243,39 +246,16 @@ apt install -y edb-debugger && apt install -y gdb-peda && apt install -y gdb
 echo -e "${YELLOW}\n Install VMWare-Tools.  ${NC}"
 apt install -y --reinstall open-vm-tools-desktop
 
+#Install Sonarqube
 echo -e "${YELLOW}\n Install Sonarqube.  ${NC}"
-
 docker pull sonarqube
 docker volume create sonarqube-conf 
 docker volume create sonarqube-data
 docker volume create sonarqube-logs
 docker volume create sonarqube-extensions
 
-echo -e "${YELLOW}\n Install ForticlientVPN. 嬨 ${NC}"
-#Install requeriments FortiClientVPN
-cd $track
-apt-get -y install libdbusmenu-gtk4
-apt-get -y install libgconf-2-4
-curl -p --insecure "http://ftp.br.debian.org/debian/pool/main/libi/libindicator/libindicator7_0.5.0-4_amd64.deb" --output libindicator7_0.5.0-4_amd64.deb
-dpkg -i libindicator7_0.5.0-4_amd64.deb
-
-#curl -p --insecure "http://ftp.de.debian.org/debian/pool/main/liba/libappindicator/libappindicator1_0.4.92-3.1_amd64.deb" --output libappindicator1_0.4.92-8_amd64.deb
-#dpkg -i libappindicator1_0.4.92-8_amd64.deb
-
-#Install Forticlient following steps -> https://www.fortinet.com/support/product-downloads/linux
-
-
-wget -c 'https://hadler.me/files/forticlient-sslvpn_4.4.2333-1_amd64.deb'; dpkg -i forticlient-sslvpn_4.4.2333-1_amd64.deb
-
-
-
 echo -e "${YELLOW}\n Install ADB-Tools.  ${NC}"
 apt install -y adb
-
-echo -e "${YELLOW}\n Install UberTooth.  ${NC}"
-
-#apt update && sudo apt install cmake libusb-1.0-0-dev git make gcc g++ libbluetooth-dev wget build-essential pkg-config python3-numpy python3-qtpy python3-distutils python3-setuptools wireshark wireshark-dev libwireshark-dev python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev -y
-
 
 }
 
