@@ -20,6 +20,7 @@ exfiltration="Exfiltration"
 WIFI="WiFi & BLE"
 DOS="DoS-attack"
 INCIDENT="Incident"
+FRAMEWORK="Framework"
 token="" 
 track=$(pwd)
 
@@ -28,7 +29,7 @@ track=$(pwd)
 ###############################################################################################################################
 #create paths
 mkdir /opt/Tools;
-mkdir /opt/Tools/{$reconnaissance,$weaponization,$delivery,$explotation,$evation,$exfiltration,$WIFI,$DOS,$INCIDENT};
+mkdir /opt/Tools/{$reconnaissance,$weaponization,$delivery,$explotation,$evation,$exfiltration,$WIFI,$DOS,$INCIDENT,$FRAMEWORK};
 
 clear;
 
@@ -539,11 +540,21 @@ cd  /opt/Tools/$INCIDENT/LogonTracer;  docker pull jpcertcc/docker-logontracer
 ###############################################################################################################################
 ##################################################### Framework ###############################################################
 ###############################################################################################################################
+Framework(){
 
 echo -e "${YELLOW}\nInstall MobSF${NC}"
 cd /opt/Tools/
 
 git clone https://$token@github.com/MobSF/Mobile-Security-Framework-MobSF.git
+
+echo -e "${YELLOW}\nInstall Vectr${NC}"
+apt update -y
+mkdir -p /opt/vectr
+cd /opt/vectr
+wget https://github.com/SecurityRiskAdvisors/VECTR/releases/download/ce-8.7.1/sra-vectr-runtime-8.7.1-ce.zip 
+unzip sra-vectr-runtime-8.7.1-ce.zip
+sudo docker compose up -d
+}
 
 
 ###############################################################################################################################
@@ -579,7 +590,7 @@ exfiltration  2>>/home/$DANT/Downloads/CustomKali/errors.txt
 wifi 2>>/home/$DANT/Downloads/CustomKali/>errors.txt
 Dos 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 Incident 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-
+Framework 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 
 echo -e "\n"
 nordvpn set dns 1.1.1.1 8.8.8.8 2>>errors.txt #set DNS in VPN
