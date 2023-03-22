@@ -17,7 +17,7 @@ delivery="Delivery"
 explotation="Explotation_Scalation_C&C"
 evation="Defense_Evasion"
 exfiltration="Exfiltration"
-WIFI="WiFi & BLE"
+WIFI="WiFi_BLE"
 DOS="DoS-attack"
 INCIDENT="Incident"
 FRAMEWORK="Framework"
@@ -141,18 +141,11 @@ pip3 install name-that-hash
 
 echo -e "${BLUE}\n Install Docker.  ${NC}"
 apt-get remove docker docker-engine docker.io containerd runc;
-apt install -y \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-mkdir -m 0755 -p /etc/apt/keyrings;
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-apt-get -y update;
-apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin;
+apt install curl gnupg2 apt-transport-https software-properties-common ca-certificates;
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg;
+echo "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable" | sudo tee  /etc/apt/sources.list.d/docker.list;
+apt update;
+apt install -y docker-ce docker-ce-cli containerd.io;
 systemctl enable docker --now;
 
 #Install lsd
@@ -352,7 +345,7 @@ cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/OWASP/ZSC.git
 ###############################################################################################################################
 
 delivery (){
-cd  /opt/Tools/$deliveryn/
+cd  /opt/Tools/$delivery/
 
 echo -e "${YELLOW}\nInstall AdvPhishing${NC}"
 git clone https://$token@github.com/Ignitetch/AdvPhishing.git
@@ -430,7 +423,7 @@ pip install Jinja2==2.11.2 ldap3==2.8 ldapdomaindump==0.9.3 MarkupSafe==1.1.1 py
 evation(){
 
 echo -e "${YELLOW}\nDownload Tools Defense Evation ${NC}"
-cd  /opt/Tools/$explotation/
+cd  /opt/Tools/$evation/
 
 git clone https://$token@github.com/devploit/XORpass
 git clone https://$token@github.com/slaeryan/FALCONSTRIKE.git
@@ -440,8 +433,8 @@ git clone https://$token@github.com/secretsquirrel/SigThief.git
 git clone https://$token@github.com/Mr-Un1k0d3r/DKMC.git
 git clone https://$token@github.com/phra/PEzor.git
 
-wget -O /opt/Tools/$explotation/upx.tar.xz https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
-tar -Jxvf /opt/Tools/$explotation/upx.tar.xz -C /opt/Tools/$explotation/ && rm /opt/Tools/$explotation/upx.tar.xz;
+wget -O /opt/Tools/$evation/upx.tar.xz https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
+tar -Jxvf /opt/Tools/$evation/upx.tar.xz -C /opt/Tools/$evation/ && rm /opt/Tools/$evation/upx.tar.xz;
 
 }
 
@@ -470,6 +463,7 @@ git clone https://$token@github.com/IncideDigital/Mistica.git
 
 wifi(){
 
+
 echo -e "${YELLOW}\nInstall evilTrust.${NC}"
 cd /opt/Tools/$WIFI
 git clone https://$token@github.com/s4vitar/evilTrust.git
@@ -489,6 +483,7 @@ cd /opt/Tools/$WIFI
 git clone https://$token@github.com/aress31/wirespy.git
 cd /opt/Tools/$WIFI/wirespay; chmod +x wirespy.sh
 
+cd /opt/Tools/$WIFI
 git clone https://$token@github.com/vanhoefm/krackattacks-scripts.git krackattacks
 
 git clone https://$token@github.com/Telefonica/HomePWN.git
@@ -555,7 +550,7 @@ cd  /opt/Tools/$INCIDENT/LogonTracer;  docker pull jpcertcc/docker-logontracer
 Framework(){
 
 echo -e "${YELLOW}\nInstall MobSF${NC}"
-cd /opt/Tools/
+cd /opt/
 
 git clone https://$token@github.com/MobSF/Mobile-Security-Framework-MobSF.git
 
