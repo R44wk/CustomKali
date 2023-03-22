@@ -11,26 +11,24 @@ lightgreen='\e[1;32m'
 white='\e[1;37m'
 red='\e[1;31m'
 purpura='\e[0;35m'
-
 reconnaissance="Reconnaissance"
 weaponization="Weaponization"
 delivery="Delivery"
 explotation="Explotation_Scalation_C&C"
 evation="Defense_Evasion"
 exfiltration="Exfiltration"
-wifi="WiFi_BLE"
-
-
-
+WIFI="WiFi & BLE"
+DOS="DoS-attack"
+INCIDENT="Incident"
 token="" 
 track=$(pwd)
 
 
 
 ###############################################################################################################################
-#create tracks
+#create paths
 mkdir /opt/Tools;
-mkdir /opt/Tools/{$reconnaissance,$weaponization,$delivery,$explotation,$evation,$exfiltration,$WIFI};
+mkdir /opt/Tools/{$reconnaissance,$weaponization,$delivery,$explotation,$evation,$exfiltration,$WIFI,$DOS,$INCIDENT};
 
 clear;
 
@@ -267,7 +265,7 @@ apt install -y adb
 reconnaissance(){
 
 echo -e "${YELLOW}\nDownload Tools Reconnaissance ${NC}"
-cd  /opt/Tools/$OSINT/
+cd  /opt/Tools/$reconnaissance/
 
 git clone https://$token@github.com/stark0de/nginxpwner.git
 git clone https://$token@github.com/smackerdodi/403bypasser.git
@@ -314,48 +312,142 @@ git clone https://$token@github.com/TheRook/subbrute.git
 git clone https://$token@github.com/bbb31/slurp.git
 git clone https://$token@github.com/nahamsec/HostileSubBruteforcer.git
 git clone https://$token@github.com/JordyZomer/autoSubTakeover.git
+git clone https://$token@github.com/s0md3v/Photon.git
+}
+
+
+###############################################################################################################################
+################################################## Weaponization #################################################################
+###############################################################################################################################
+
+weaponization(){
+cd  /opt/Tools/$weaponization/
+echo -e "${YELLOW}\n Download Weaponization.${NC}"
+
+git clone https://$token@github.com/outflanknl/EvilClippy.git
+git clone https://$token@ggithub.com/tokyoneon/chimera
+git clone https://$token@github.com/abdulkadir-gungor/JPGtoMalware.git
+git clone https://$token@github.com/cheetz/Easy-P.git
+git clone https://$token@github.com/byt3bl33d3r/DeathStar.git
+git clone https://$token@github.com/Mr-Un1k0d3r/MaliciousMacroGenerator.git
+git clone https://$token@github.com/enigma0x3/Generate-Macro.git
+git clone https://$token@github.com/Greenwolf/ntlm_theft.git
+git clone https://$token@github.com/mdsecactivebreach/SharpShooter.git
+git clone https://$token@github.com/infosecn1nja/MaliciousMacroMSBuild.git
+git clone https://$token@github.com/TheWover/donut.git
+
+echo -e "${YELLOW}\nInstall ZSC${NC}"
+cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/OWASP/ZSC.git
+
+}
+
+###############################################################################################################################
+##################################################### Delivery ###############################################################
+###############################################################################################################################
+
+delivery (){
+cd  /opt/Tools/$deliveryn/
+
+echo -e "${YELLOW}\nInstall AdvPhishing${NC}"
+git clone https://$token@github.com/Ignitetch/AdvPhishing.git
+
+echo -e "${YELLOW}\nInstall Modlishka${NC}"
+git clone https://$token@github.com/drk1wi/Modlishka.git
+
+echo -e "${YELLOW}\nInstall CactusTorch${NC}"
+git clone https://$token@github.com/xillwillx/CACTUSTORCH_DDEAUTO.git
+git clone https://$token@github.com/mdsecactivebreach/CACTUSTORCH.git
+
+echo -e "${YELLOW}\nInstall Cuteit${NC}"
+git clone https://$token@github.com/D4Vinci/Cuteit.git
+
+echo -e "${YELLOW}\nInstall IP-Obfuscator${NC}"
+git clone https://$token@github.com/findneo/IP-Obfuscator.git
+
+echo -e "${YELLOW}\nInstall ZPhisher${NC}"
+git clone https://$token@github.com/htr-tech/zphisher.git
+
+echo -e "${YELLOW}\nInstall Hidden-Eye${NC}"
+git clone https://$token@github.com/r3x07/HiddenEye.git
+
+echo -e "${YELLOW}\nInstall PyPhisher${NC}"
+git clone https://$token@github.com/KasRoudra/PyPhisher
+
+echo -e "${YELLOW}\nInstall Evilgnix2${NC}"
+git clone https://$token@github.com/kgretzky/evilginx2.git
+
+echo -e "${YELLOW}\nInstall CredSniper${NC}"
+git clone https://$token@github.com/ustayready/CredSniper.git
+
+}
 
 
 
+###############################################################################################################################
+##################################################### Explotation_Scalation_C&C ##################################################
+###############################################################################################################################
 
+explotation(){
 
+echo -e "${YELLOW}\nDownload Tools Explotation_Scalation_C&C. ${NC}"
+cd  /opt/Tools/$explotation/
 
+git clone https://$token@github.com/salvul/AutoSploit.git
+git clone https://$token@github.com/Telefonica/ibombshell.git
+git clone https://$token@github.com/threat9/routersploit.git
+git clone https://$token@github.com/Pepelux/sippts.git
+git clone https://$token@github.com/aress31/xmlrpc-bruteforcer.git
+git clone https://$token@github.com/trustedsec/unicorn.git
+git clone https://$token@github.com/offsecginger/koadic.git
+git clone https://$token@github.com/cobbr/Covenant.git
+git clone https://$token@github.com/Ne0nd0g/merlin.git
+git clone https://$token@github.com/iagox86/dnscat2.git
 
+echo -e "${YELLOW}\nZeroLogon${NC}"
 
+git clone https://$token@github.com/dirkjanm/CVE-2020-1472.git ZeroLogon
+cd  /opt/Tools/$explotation/ZeroLogon; 
+pip install cffi==1.14.2 click==7.1.2 cryptography==3.1 dnspython==2.0.0 Flask==1.1.2 future==0.18.2 impacket==0.9.21 itsdangerous==1.1.0 Werkzeug==1.0.1
+pip install Jinja2==2.11.2 ldap3==2.8 ldapdomaindump==0.9.3 MarkupSafe==1.1.1 pyasn1==0.4.8 pycparser==2.20 pycryptodomex==3.9.8 pyOpenSSL==19.1.0 six==1.15.0
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 ###############################################################################################################################
 ################################################## Defense_Evasion #################################################################
 ###############################################################################################################################
 
-
 evation(){
 
-echo -e "${YELLOW}\n Download Defense_Evasion.${NC}"
+echo -e "${YELLOW}\nDownload Tools Defense Evation ${NC}"
+cd  /opt/Tools/$explotation/
 
-cd /opt/Tools/$AV; git clone https://$token@github.com/outflanknl/EvilClippy.git
-cd /opt/Tools/$AV; git clone https://$token@ggithub.com/tokyoneon/chimera
-cd /opt/Tools/$AV; git clone https://$token@github.com/devploit/XORpass
-cd /opt/Tools/$AV; git clone https://$token@github.com/abdulkadir-gungor/JPGtoMalware.git
+git clone https://$token@github.com/devploit/XORpass
+git clone https://$token@github.com/slaeryan/FALCONSTRIKE.git
+git clone https://$token@github.com/t3l3machus/hoaxshell.git
+git clone https://$token@github.com/optiv/ScareCrow.git
+git clone https://$token@github.com/secretsquirrel/SigThief.git
+git clone https://$token@github.com/Mr-Un1k0d3r/DKMC.git
+git clone https://$token@github.com/phra/PEzor.git
 
+wget -O /opt/Tools/$explotation/upx.tar.xz https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
+tar -Jxvf /opt/Tools/$explotation/upx.tar.xz -C /opt/Tools/$explotation/ && rm /opt/Tools/$explotation/upx.tar.xz;
+
+}
+
+
+###############################################################################################################################
+################################################## exfiltration #################################################################
+###############################################################################################################################
+
+
+exfiltration(){
+
+echo -e "${YELLOW}\nDownload Tools Exfiltration ${NC}"
+cd  /opt/Tools/$exfiltration/
+
+https://github.com/epinna/weevely3.git
+https://github.com/SECFORCE/Tunna.git
+https://github.com/Arno0x/DNSExfiltrator.git
 }
 
 ###############################################################################################################################
@@ -392,6 +484,10 @@ git clone https://$token@github.com/hash3liZer/WiFiBroot.git
 
 git clone https://$token@github.com/FluxionNetwork/fluxion.git
 
+echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
+apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
+npm install -g btlejuice
+
 }
 
 
@@ -426,104 +522,6 @@ cd /opt/Tools/$DOS/XERXES; gcc -o xerxes xerxes.c
 echo -e "${YELLOW}\nInstall Zambie${NC}"
 cd  /opt/Tools/$DOS;git clone https://$token@github.com/iTzPrime/zambie.git
 cd /opt/Tools/$DOS/zambie; chmod +x Installer.sh
-}
-
-###############################################################################################################################
-##################################################### Exploit #################################################################
-###############################################################################################################################
-
-Exploit (){
-
-echo -e "${YELLOW}\nInstall Apache-Struts${NC}"
-cd  /opt/Tools/$EXPLOIT; git clone https://$token@github.com/s1kr10s/Apache-Struts-v4.git
-
-echo -e "${YELLOW}\nInstall AutoSploit${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/salvul/AutoSploit.git
-cd  /opt/Tools/$EXPLOIT/AutoSploit/; pip install -r requirements.txt
-
-echo -e "${YELLOW}\nBlueKeep${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/ekultek/bluekeep
-cd  /opt/Tools/$EXPLOIT/bluekeep/; pip install -r requirements.txt
-
-echo -e "${YELLOW}\nDeathstar${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/byt3bl33d3r/DeathStar.git
-
-echo -e "${YELLOW}\nEasy-P${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/cheetz/Easy-P.git
-
-echo -e "${YELLOW}\nIbombshell${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/Telefonica/ibombshell.git
-cd  /opt/Tools/$EXPLOIT/ibombshell
-pip install termcolor gnureadline pynput
-
-echo -e "${YELLOW}\nJexboss${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/joaomatosf/jexboss.git
-cd  /opt/Tools/$EXPLOIT/jexboss ;pip install -r requires.txt
-
-echo -e "${YELLOW}\nMITMF${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/byt3bl33d3r/MITMf.git
-#apt-get install -y python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone-dev libffi-dev file
-#cd  /opt/Tools/$EXPLOIT/MITMf && git submodule init && git submodule update --recursive
-#pip install -r requirements.txt
-
-echo -e "${YELLOW}\nRouterSploit${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/threat9/routersploit.git
-cd /opt/Tools/$EXPLOIT/routersploit
-python3 -m pip install -r requirements.txt
-
-echo -e "${YELLOW}\nSippts${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/Pepelux/sippts.git
-apt install libio-socket-timeout-perl libnetaddr-ip-perl libnet-address-ip-local-perl libnet-pcap-perl libtext-string-hexconvert-perl libdbd-sqlite3-perl
-
-echo -e "${YELLOW}\nWesng${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/bitsadmin/wesng.git
-
-echo -e "${YELLOW}\nxmlrpc-bruteforce${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/aress31/xmlrpc-bruteforcer.git
-cd  /opt/Tools/$EXPLOIT/xmlrpc-bruteforcer
-pip install -r requirements.txt
-
-echo -e "${YELLOW}\nZeroLogon${NC}"
-cd  /opt/Tools/$EXPLOIT;git clone https://$token@github.com/dirkjanm/CVE-2020-1472.git ZeroLogon
-cd  /opt/Tools/$EXPLOIT/ZeroLogon; 
-pip install cffi==1.14.2 click==7.1.2 cryptography==3.1 dnspython==2.0.0 Flask==1.1.2 future==0.18.2 impacket==0.9.21 itsdangerous==1.1.0 Werkzeug==1.0.1
-pip install Jinja2==2.11.2 ldap3==2.8 ldapdomaindump==0.9.3 MarkupSafe==1.1.1 pyasn1==0.4.8 pycparser==2.20 pycryptodomex==3.9.8 pyOpenSSL==19.1.0 six==1.15.0
-
-echo -e "${YELLOW}\nInstall CVE-2019-0708${NC}"
-cd  /opt/Tools/$EXPLOIT; git clone https://$token@github.com/Leoid/CVE-2019-0708.git
-cd  /opt/Tools/$EXPLOIT/CVE-2019-0708
-
-git clone https://$token@github.com/dorkerdevil/CVE-2019-11932.git WhatsApp-Exploit
-
-}
-
-
-###############################################################################################################################
-##################################################### Framework ###############################################################
-###############################################################################################################################
-
-Framework(){
-
-echo -e "${YELLOW}\nInstall Crips${NC}"
-cd  /opt/Tools/$FRAMEWORK; git clone https://$token@github.com/Manisso/Crips.git
-cd /opt/Tools/$FRAMEWORK/Crips; chmod +x install.sh;./install.sh
-
-echo -e "${YELLOW}\nInstall jboss-autopwn${NC}"
-cd  /opt/Tools/$FRAMEWORK; git clone https://$token@github.com/SpiderLabs/jboss-autopwn.git
-
-echo -e "${YELLOW}\nInstall ZSC${NC}"
-cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/OWASP/ZSC.git
-
-
-echo -e "${YELLOW}\nInstall V3n0M-Scanner${NC}"
-cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/v3n0m-Scanner/V3n0M-Scanner.git
-
-echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
-apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
-npm install -g btlejuice
-
-echo -e "${YELLOW}\nInstall MobSF${NC}"
-git clone https://$token@github.com/MobSF/Mobile-Security-Framework-MobSF.git
 
 }
 
@@ -539,65 +537,18 @@ cd  /opt/Tools/$INCIDENT/LogonTracer;  docker pull jpcertcc/docker-logontracer
 }
 
 ###############################################################################################################################
-##################################################### IngSocial ###############################################################
+##################################################### Framework ###############################################################
 ###############################################################################################################################
 
-Social (){
-echo -e "${YELLOW}\nInstall AdvPhishing${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/Ignitetch/AdvPhishing.git
-cd /opt/Tools/$SOCIAL/AdvPhishing/; chmod 777 start.sh; ./start.sh
+echo -e "${YELLOW}\nInstall MobSF${NC}"
+cd /opt/Tools/
 
-echo -e "${YELLOW}\nInstall CactusTorch${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/xillwillx/CACTUSTORCH_DDEAUTO.git
-cd  /opt/Tools/$SOCIAL/CACTUSTORCH_DDEAUTO; git clone https://github.com/mdsecactivebreach/CACTUSTORCH.git
-
-echo -e "${YELLOW}\nInstall Cuteit${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/D4Vinci/Cuteit.git
-
-echo -e "${YELLOW}\nInstall IP-Obfuscator${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/findneo/IP-Obfuscator.git
-
-echo -e "${YELLOW}\nInstall MaliciousMacroMSBuild${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/infosecn1nja/MaliciousMacroMSBuild.git
-
-echo -e "${YELLOW}\nInstall Modlishka${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/drk1wi/Modlishka.git
-
-echo -e "${YELLOW}\nInstall ZPhisher${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/htr-tech/zphisher.git
-
-echo -e "${YELLOW}\nInstall Hidden-Eye${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/r3x07/HiddenEye.git
-
-echo -e "${YELLOW}\nInstall PyPhisher${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/KasRoudra/PyPhisher
-
-echo -e "${YELLOW}\nInstall Evilgnix2${NC}"
-cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/kgretzky/evilginx2.git
-
-}
-
-
-
-
-}
+git clone https://$token@github.com/MobSF/Mobile-Security-Framework-MobSF.git
 
 
 ###############################################################################################################################
-####################################################### Apps ##################################################################
+#########################################################################################################################
 ###############################################################################################################################
-
-App(){
-
-echo -e "${YELLOW}\nDownload Tools AppVulnerability ${NC}"
-cd  /opt/Tools/$APP/
-
-git clone https://$token@github.com/s0md3v/XSStrike.git
-git clone https://$token@github.com/almandin/fuxploider.git
-
-}
-
-
 
 Banner() {
 
@@ -617,30 +568,19 @@ echo -e "${YELLOW}                                                              
 }
 
 Banner
-sleep 2 
 Kali 
-sleep 2 
 system 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 reconnaissance 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-
-
-AV-Evation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-sleep 2
+weaponization 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+delivery 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+explotation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+evation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+exfiltration  2>>/home/$DANT/Downloads/CustomKali/errors.txt
 wifi 2>>/home/$DANT/Downloads/CustomKali/>errors.txt
-sleep 2
 Dos 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-sleep 2 
-Exploit 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-apt update -y && apt upgrade 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-Framework 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-sleep 2 
 Incident 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-sleep 2 
-Social 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-sleep 2 
 
-sleep 2
-App 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+
 echo -e "\n"
 nordvpn set dns 1.1.1.1 8.8.8.8 2>>errors.txt #set DNS in VPN
 echo -e "${BLUE}\nUpdating locate database.${NC}"
