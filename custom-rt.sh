@@ -259,18 +259,98 @@ apt install -y adb
 
 }
 
+
 ###############################################################################################################################
-################################################## AV-Evation #################################################################
+###################################################### Reconnaissance ##################################################################
+###############################################################################################################################
+
+reconnaissance(){
+
+echo -e "${YELLOW}\nDownload Tools Reconnaissance ${NC}"
+cd  /opt/Tools/$OSINT/
+
+git clone https://$token@github.com/stark0de/nginxpwner.git
+git clone https://$token@github.com/smackerdodi/403bypasser.git
+git clone https://$token@github.com/sense-of-security/ADRecon.git
+git clone https://$token@github.com/mattweidner/bucket_finder.git
+git clone https://$token@github.com/lobuhi/byp4xx.git
+git clone https://$token@github.com/christophetd/cloudflair.git
+git clone https://$token@github.com/greycatz/CloudUnflare.git
+git clone https://$token@github.com/D4Vinci/Cr3dOv3r.git
+git clone https://$token@github.com/ThoughtfulDev/EagleEye
+git clone https://$token@github.com/mxrch/GHunt.git
+git clone https://$token@github.com/liamg/gitjacker.git
+git clone https://$token@github.com/FeeiCN/gsil.git
+git clone --depth 1 https://$token@github.com/stamparm/identYwaf.git
+git clone https://$token@github.com/m4ll0k/Infoga.git infoga
+git clone https://$token@github.com/adnane-X-tebbaa/Katana.git
+git clone https://$token@github.com/adnane-X-tebbaa/GRecon.git
+git clone https://$token@github.com/guelfoweb/knock.git
+git clone https://$token@github.com/lolwaleet/ReverseIP.git
+git clone https://$token@github.com/s4vitar/rpcenum.git
+git clone https://$token@github.com/ollypwn/SMBGhost.git
+git clone https://$token@github.com/cytopia/smtp-user-enum.git
+git clone https://$token@github.com/adityaks/sparty.git
+git clone https://$token@github.com/aboul3la/Sublist3r.git
+git clone --recursive https://$token@github.com/screetsec/Sudomy.git
+git clone --depth 1 https://$token@github.com/drwetter/testssl.sh.git
+git clone https://$token@github.com/DedSecInside/TorBot.git
+git clone https://$token@github.com/m3n0sd0n4ld/uDork
+git clone https://$token@github.com/wafpassproject/wafpass.git
+git clone https://$token@github.com/Ekultek/WhatBreach.git
+git clone https://$token@github.com/Ekultek/WhatWaf.git
+git clone https://$token@github.com/iojw/socialscan.git
+git clone https://$token@github.com/Dheerajmadhukar/karma_v2.git
+git clone https://$token@github.com/BishopFox/GitGot.git
+git clone https://$token@github.com/mubix/IOXIDResolver.git
+git clone https://$token@github.com/m0rtem/CloudFail.git
+git clone https://$token@github.com/ropnop/kerbrute.git
+git clone https://$token@github.com/sundowndev/phoneinfoga.git
+git clone https://$token@github.com/Greenwolf/social_mapper.git
+git clone https://$token@github.com/laramies/metagoofil.git
+git clone https://$token@github.com/metac0rtex/GitHarvester.git
+git clone https://$token@github.com/cheetz/sslScrape.git
+git clone https://$token@github.com/TheRook/subbrute.git
+git clone https://$token@github.com/bbb31/slurp.git
+git clone https://$token@github.com/nahamsec/HostileSubBruteforcer.git
+git clone https://$token@github.com/JordyZomer/autoSubTakeover.git
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################################################################
+################################################## Defense_Evasion #################################################################
 ###############################################################################################################################
 
 
-AV-Evation(){
+evation(){
 
-echo -e "${YELLOW}\n Download AV-Evation.${NC}"
+echo -e "${YELLOW}\n Download Defense_Evasion.${NC}"
 
-cd /opt/Tools/$AV; git clone https://$token@github.com/phra/Phantom-Evasion.git
-cd /opt/Tools/$AV; git clone https://$token@github.com/Screetsec/TheFatRat.git
-cd /opt/Tools/$AV; git clone https://$token@github.com/EgeBalci/HERCULES.git
 cd /opt/Tools/$AV; git clone https://$token@github.com/outflanknl/EvilClippy.git
 cd /opt/Tools/$AV; git clone https://$token@ggithub.com/tokyoneon/chimera
 cd /opt/Tools/$AV; git clone https://$token@github.com/devploit/XORpass
@@ -497,68 +577,9 @@ cd  /opt/Tools/$SOCIAL/; git clone https://$token@github.com/kgretzky/evilginx2.
 
 }
 
-###############################################################################################################################
-###################################################### OSINT ##################################################################
-###############################################################################################################################
 
-Osint(){
 
-echo -e "${YELLOW}\nDownload Tools OSINT ${NC}"
-cd  /opt/Tools/$OSINT/
 
-git clone https://$token@github.com/stark0de/nginxpwner.git
-git clone https://$token@github.com/six2dez/reconftw.git
-git clone https://$token@github.com/thewhiteh4t/FinalRecon.git
-git clone https://$token@github.com/smackerdodi/403bypasser.git
-git clone https://$token@github.com/sense-of-security/ADRecon.git
-git clone https://$token@github.com/1N3/BlackWidow.git
-git clone https://$token@github.com/mattweidner/bucket_finder.git
-git clone https://$token@github.com/lobuhi/byp4xx.git
-git clone https://$token@github.com/christophetd/cloudflair.git
-git clone https://$token@github.com/greycatz/CloudUnflare.git
-git clone https://$token@github.com/D4Vinci/Cr3dOv3r.git
-git clone https://$token@github.com/lightos/credmap.git
-git clone https://$token@github.com/UnaPibaGeek/ctfr.git
-git clone https://$token@github.com/ThoughtfulDev/EagleEye
-git clone https://$token@github.com/mxrch/GHunt.git
-git clone https://$token@github.com/liamg/gitjacker.git
-git clone https://$token@github.com/FeeiCN/gsil.git
-git clone https://$token@github.com/khast3x/h8mail.git
-git clone --depth 1 https://$token@github.com/stamparm/identYwaf.git
-git clone https://$token@github.com/m4ll0k/Infoga.git infoga
-git clone https://$token@github.com/adnane-X-tebbaa/Katana.git
-git clone https://$token@github.com/adnane-X-tebbaa/GRecon.git
-git clone https://$token@github.com/guelfoweb/knock.git
-git clone https://$token@github.com/4w4k3/KnockMail.git 
-git clone https://$token@github.com/davidtavarez/pwndb
-git clone https://$token@github.com/TunisianEagles/quasar.git
-git clone https://$token@github.com/lolwaleet/ReverseIP.git
-git clone https://$token@github.com/Anon-Exploiter/ReVeRsE-IP.git
-git clone https://$token@github.com/s4vitar/rpcenum.git
-git clone https://$token@github.com/ollypwn/SMBGhost.git
-git clone https://$token@github.com/ZecOps/CVE-2020-1206-POC.git
-git clone https://$token@github.com/cytopia/smtp-user-enum.git
-git clone https://$token@github.com/adityaks/sparty.git
-git clone https://$token@github.com/aboul3la/Sublist3r.git
-git clone --recursive https://$token@github.com/screetsec/Sudomy.git
-git clone --depth 1 https://$token@github.com/drwetter/testssl.sh.git
-git clone https://$token@github.com/DedSecInside/TorBot.git
-git clone https://$token@github.com/m3n0sd0n4ld/uDork
-git clone https://$token@github.com/wishihab/userrecon.git
-git clone https://$token@github.com/wafpassproject/wafpass.git
-git clone https://$token@github.com/Ekultek/WhatBreach.git
-git clone https://$token@github.com/Ekultek/WhatWaf.git
-git clone https://$token@github.com/Rumpelstiltsquin/MyOS.git
-git clone https://$token@github.com/Rumpelstiltsquin/CheckWeb.git
-git clone https://$token@github.com/gocaio/goca.git
-git clone https://$token@github.com/liamg/furious.git
-git clone https://$token@github.com/iojw/socialscan.git
-git clone https://$token@github.com/Dheerajmadhukar/karma_v2.git
-#git clone https://$token@github.com/smicallef/spiderfoot.git
-git clone https://$token@github.com/BishopFox/GitGot.git
-git clone https://$token@github.com/mubix/IOXIDResolver.git
-git clone https://$token@github.com/m0rtem/CloudFail.git
-git clone https://$token@github.com/ropnop/kerbrute.git
 }
 
 
@@ -600,6 +621,9 @@ sleep 2
 Kali 
 sleep 2 
 system 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+reconnaissance 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+
+
 AV-Evation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
 wifi 2>>/home/$DANT/Downloads/CustomKali/>errors.txt
@@ -614,7 +638,7 @@ Incident 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
 Social 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2 
-Osint 2>>/home/$DANT/Downloads/CustomKali/errors.txt
+
 sleep 2
 App 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 echo -e "\n"
