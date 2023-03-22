@@ -314,6 +314,10 @@ git clone https://$token@github.com/bbb31/slurp.git
 git clone https://$token@github.com/nahamsec/HostileSubBruteforcer.git
 git clone https://$token@github.com/JordyZomer/autoSubTakeover.git
 git clone https://$token@github.com/s0md3v/Photon.git
+git clone https://$token@github.com/teknogeek/virtual-host-discovery-py.git
+git clone https://$token@github.com/khalilbijjou/WAFNinja.git
+git clone https://$token@github.com/absolomb/WindowsEnum.git
+git clone https://$token@github.com/jordanpotti/AWSBucketDump.git
 }
 
 
@@ -336,6 +340,7 @@ git clone https://$token@github.com/Greenwolf/ntlm_theft.git
 git clone https://$token@github.com/mdsecactivebreach/SharpShooter.git
 git clone https://$token@github.com/infosecn1nja/MaliciousMacroMSBuild.git
 git clone https://$token@github.com/TheWover/donut.git
+git clone https://$token@github.com/sevagas/macro_pack.git
 
 echo -e "${YELLOW}\nInstall ZSC${NC}"
 cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/OWASP/ZSC.git
@@ -403,6 +408,11 @@ git clone https://$token@github.com/offsecginger/koadic.git
 git clone https://$token@github.com/cobbr/Covenant.git
 git clone https://$token@github.com/Ne0nd0g/merlin.git
 git clone https://$token@github.com/iagox86/dnscat2.git
+git clone https://$token@github.com/mandiant/SharPersist.git
+git clone https://$token@github.com/n1nj4sec/pupy.git
+git clone https://$token@github.com/Viralmaniar/Powershell-RAT.git
+git clone https://$token@github.com/mitre/caldera.git
+git clone https://$token@github.com/bdamele/icmpsh.git
 
 echo -e "${YELLOW}\nZeroLogon${NC}"
 
@@ -446,9 +456,11 @@ exfiltration(){
 echo -e "${YELLOW}\nDownload Tools Exfiltration ${NC}"
 cd  /opt/Tools/$exfiltration/
 
-https://github.com/epinna/weevely3.git
-https://github.com/SECFORCE/Tunna.git
-https://github.com/Arno0x/DNSExfiltrator.git
+git clone https://$token@github.com/epinna/weevely3.git
+git clone https://$token@github.com/SECFORCE/Tunna.git
+git clone https://$token@github.com/Arno0x/DNSExfiltrator.git
+git clone https://$token@github.com/m57/dnsteal.git
+git clone https://$token@github.com/IncideDigital/Mistica.git
 }
 
 ###############################################################################################################################
