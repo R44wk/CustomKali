@@ -165,7 +165,7 @@ apt install rlwrap -y;
 #Install Telegram
 echo -e "${BLUE}\n Telegram.  ${NC}";
 wget -O /home/$DANT/Desktop/telegram.tar.xz  https://updates.tdesktop.com/tlinux/tsetup.3.5.2.tar.xz;
-tar -Jxvf /home/$DANT/Desktop/telegram.tar.xz -C /home/$DANT/Desktop/ && rm /home/$DANT/Desktop/telegram.tar.xz;
+tar -xvf /home/$DANT/Desktop/telegram.tar.xz -C /home/$DANT/Desktop/ && rm /home/$DANT/Desktop/telegram.tar.xz;
 
 #Instal driver Wifi
 echo -e "${BLUE}\n Install WiFi Realtek 8812AU/8821AU Driver   ${NC}";
@@ -438,7 +438,7 @@ git clone https://$token@github.com/Mr-Un1k0d3r/DKMC.git
 git clone https://$token@github.com/phra/PEzor.git
 
 wget -O /opt/Tools/$evation/upx.tar.xz https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
-tar -Jxvf /opt/Tools/$evation/upx.tar.xz -C /opt/Tools/$evation/ && rm /opt/Tools/$evation/upx.tar.xz;
+tar -xvf /opt/Tools/$evation/upx.tar.xz -C /opt/Tools/$evation/ && rm /opt/Tools/$evation/upx.tar.xz;
 
 }
 
@@ -568,7 +568,7 @@ sudo docker compose up -d
 
 cd /opt/
 wget -O arachni.tar.gz https://github.com/Arachni/arachni/releases/download/v1.6.1.3/arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
-tar -Jxvf arachni.tar.xz && rm /opt/Tools/$evation/upx.tar.xz;
+tar -xvf arachni.tar.xz && rm /opt/arachni.tar.xz;
 
 }
 
