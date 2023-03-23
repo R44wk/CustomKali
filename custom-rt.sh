@@ -334,6 +334,8 @@ git clone https://$token@github.com/mdsecactivebreach/SharpShooter.git
 git clone https://$token@github.com/infosecn1nja/MaliciousMacroMSBuild.git
 git clone https://$token@github.com/TheWover/donut.git
 git clone https://$token@github.com/sevagas/macro_pack.git
+git clone https://$token@github.com/curi0usJack/luckystrike.git
+git clone https://$token@ghttps://github.com/Pepitoh/VBad.git
 
 echo -e "${YELLOW}\nInstall ZSC${NC}"
 cd  /opt/Tools/$FRAMEWORK;git clone https://$token@github.com/OWASP/ZSC.git
@@ -377,6 +379,8 @@ git clone https://$token@github.com/kgretzky/evilginx2.git
 
 echo -e "${YELLOW}\nInstall CredSniper${NC}"
 git clone https://$token@github.com/ustayready/CredSniper.git
+
+git clone https://$token@github.com/Arno0x/EmbedInHTML.git
 
 }
 
@@ -561,6 +565,11 @@ cd /opt/vectr
 wget https://github.com/SecurityRiskAdvisors/VECTR/releases/download/ce-8.7.1/sra-vectr-runtime-8.7.1-ce.zip 
 unzip sra-vectr-runtime-8.7.1-ce.zip
 sudo docker compose up -d
+
+cd /opt/
+wget -O arachni.tar.gz https://github.com/Arachni/arachni/releases/download/v1.6.1.3/arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
+tar -Jxvf arachni.tar.xz && rm /opt/Tools/$evation/upx.tar.xz;
+
 }
 
 
