@@ -422,6 +422,7 @@ git clone https://$token@github.com/Viralmaniar/Powershell-RAT.git
 git clone https://$token@github.com/mitre/caldera.git
 git clone https://$token@github.com/bdamele/icmpsh.git
 git clone https://$token@github.com/dafthack/MailSniper.git
+git clone https://$token@github.com/HavocFramework/Havoc.git
 
 echo -e "${YELLOW}\nZeroLogon${NC}"
 
