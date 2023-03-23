@@ -311,6 +311,14 @@ git clone https://$token@github.com/teknogeek/virtual-host-discovery-py.git
 git clone https://$token@github.com/khalilbijjou/WAFNinja.git
 git clone https://$token@github.com/absolomb/WindowsEnum.git
 git clone https://$token@github.com/jordanpotti/AWSBucketDump.git
+git clone https://$token@github.com/0xsha/CloudBrute.git
+git clone https://$token@github.com/trufflesecurity/trufflehog.git
+git clone https://$token@github.com/michenriksen/gitrob.git
+git clone https://$token@github.com/sa7mon/S3Scanner.git
+git clone https://$token@github.com/SharonBrizinov/s3viewer.git
+git clone https://$token@github.com/IvanGlinkin/Fast-Google-Dorks-Scan.git
+git clone https://$token@github.com/NetSPI/MicroBurst.git
+git clone https://$token@github.com/R44wk/CloudPeler.git
 }
 
 
@@ -381,7 +389,10 @@ echo -e "${YELLOW}\nInstall CredSniper${NC}"
 git clone https://$token@github.com/ustayready/CredSniper.git
 
 git clone https://$token@github.com/Arno0x/EmbedInHTML.git
-
+git clone https://$token@github.com/fin3ss3g0d/evilgophish.git
+git clone https://$token@github.com/mdsecactivebreach/o365-attack-toolkit.git
+git clone https://$token@github.com/mandiant/PwnAuth.git
+git clone https://$token@github.com/R44wk/mip22.git
 }
 
 
@@ -410,6 +421,7 @@ git clone https://$token@github.com/n1nj4sec/pupy.git
 git clone https://$token@github.com/Viralmaniar/Powershell-RAT.git
 git clone https://$token@github.com/mitre/caldera.git
 git clone https://$token@github.com/bdamele/icmpsh.git
+git clone https://$token@github.com/dafthack/MailSniper.git
 
 echo -e "${YELLOW}\nZeroLogon${NC}"
 
@@ -436,6 +448,9 @@ git clone https://$token@github.com/optiv/ScareCrow.git
 git clone https://$token@github.com/secretsquirrel/SigThief.git
 git clone https://$token@github.com/Mr-Un1k0d3r/DKMC.git
 git clone https://$token@github.com/phra/PEzor.git
+git clone https://$token@github.com/weak1337/Alcatraz.git
+git clone https://$token@github.com/rasta-mouse/RuralBishop.git
+git clone --recursive https://github.com/klezVirus/inceptor.git
 
 wget -O /opt/Tools/$evation/upx.tar.xz https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
 tar -xvf /opt/Tools/$evation/upx.tar.xz -C /opt/Tools/$evation/ && rm /opt/Tools/$evation/upx.tar.xz;
@@ -489,11 +504,9 @@ cd /opt/Tools/$WIFI/wirespay; chmod +x wirespy.sh
 
 cd /opt/Tools/$WIFI
 git clone https://$token@github.com/vanhoefm/krackattacks-scripts.git krackattacks
-
 git clone https://$token@github.com/Telefonica/HomePWN.git
-
+git clone https://$token@github.com/R44wk/bluescan.git
 git clone https://$token@github.com/hash3liZer/WiFiBroot.git
-
 git clone https://$token@github.com/FluxionNetwork/fluxion.git
 
 echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
