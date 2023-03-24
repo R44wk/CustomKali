@@ -584,6 +584,8 @@ cd /opt/
 wget -O arachni.tar.gz https://github.com/Arachni/arachni/releases/download/v1.6.1.3/arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
 tar -xvf arachni.tar.xz && rm /opt/arachni.tar.xz;
 
+git clone https://$token@github.com/trustedsec/ptf.git /opt/PTF
+
 }
 
 
