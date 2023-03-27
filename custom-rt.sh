@@ -413,7 +413,7 @@ git clone https://$token@github.com/Pepelux/sippts.git
 git clone https://$token@github.com/aress31/xmlrpc-bruteforcer.git
 git clone https://$token@github.com/trustedsec/unicorn.git
 git clone https://$token@github.com/offsecginger/koadic.git
-git clone https://$token@github.com/cobbr/Covenant.git
+git clone --recurse-submodules https://$token@github.com/cobbr/Covenant.git
 git clone https://$token@github.com/Ne0nd0g/merlin.git
 git clone https://$token@github.com/iagox86/dnscat2.git
 git clone https://$token@github.com/mandiant/SharPersist.git
@@ -578,7 +578,7 @@ mkdir -p /opt/vectr
 cd /opt/vectr
 wget https://github.com/SecurityRiskAdvisors/VECTR/releases/download/ce-8.7.1/sra-vectr-runtime-8.7.1-ce.zip 
 unzip sra-vectr-runtime-8.7.1-ce.zip
-sudo docker compose up -d
+docker compose up -d
 
 cd /opt/
 wget -O arachni.tar.gz https://github.com/Arachni/arachni/releases/download/v1.6.1.3/arachni-1.6.1.3-0.6.1.1-linux-x86_64.tar.gz
