@@ -413,7 +413,7 @@ git clone https://$token@github.com/Pepelux/sippts.git
 git clone https://$token@github.com/aress31/xmlrpc-bruteforcer.git
 git clone https://$token@github.com/trustedsec/unicorn.git
 git clone https://$token@github.com/offsecginger/koadic.git
-git clone --recurse-submodules https://$token@github.com/rasta-mouse/Covenant.git
+git clone --recurse-submodules https://$token@github.com/cobbr/Covenant.git
 git clone https://$token@github.com/Ne0nd0g/merlin.git
 git clone https://$token@github.com/iagox86/dnscat2.git
 git clone https://$token@github.com/mandiant/SharPersist.git
