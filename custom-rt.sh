@@ -14,7 +14,7 @@ purpura='\e[0;35m'
 reconnaissance="Reconnaissance"
 weaponization="Weaponization"
 delivery="Delivery"
-explotation="Explotation_Scalation_C&C"
+explotation="Explotation_Scalation_C2"
 evation="Defense_Evasion"
 exfiltration="Exfiltration"
 WIFI="WiFi_BLE"
@@ -452,6 +452,7 @@ git clone https://$token@github.com/phra/PEzor.git
 git clone https://$token@github.com/weak1337/Alcatraz.git
 git clone https://$token@github.com/rasta-mouse/RuralBishop.git
 git clone --recursive https://github.com/klezVirus/inceptor.git
+git clone https://$token@github.com/xoreaxeaxeax/movfuscator
 
 wget -O /opt/Tools/$evation/upx.tar.xz https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
 tar -xvf /opt/Tools/$evation/upx.tar.xz -C /opt/Tools/$evation/ && rm /opt/Tools/$evation/upx.tar.xz;
