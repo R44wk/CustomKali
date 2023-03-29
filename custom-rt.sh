@@ -417,7 +417,7 @@ git clone --recurse-submodules https://$token@github.com/cobbr/Covenant.git
 git clone https://$token@github.com/Ne0nd0g/merlin.git
 git clone https://$token@github.com/iagox86/dnscat2.git
 git clone https://$token@github.com/mandiant/SharPersist.git
-git clone https://$token@github.com/n1nj4sec/pupy.git
+
 git clone https://$token@github.com/Viralmaniar/Powershell-RAT.git
 git clone https://$token@github.com/mitre/caldera.git
 git clone https://$token@github.com/bdamele/icmpsh.git
