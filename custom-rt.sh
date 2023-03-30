@@ -163,11 +163,6 @@ wget https://$token@github.com/sharkdp/bat/releases/download/v0.18.1/bat_0.18.1_
 echo -e "${BLUE}\n rlwrap.  ${NC}"
 apt install rlwrap -y; 
 
-#Install Telegram
-echo -e "${BLUE}\n Telegram.  ${NC}";
-wget -O /home/$DANT/Desktop/telegram.tar.xz  https://updates.tdesktop.com/tlinux/tsetup.3.5.2.tar.xz;
-tar -xvf /home/$DANT/Desktop/telegram.tar.xz -C /home/$DANT/Desktop/ && rm /home/$DANT/Desktop/telegram.tar.xz;
-
 #Instal driver Wifi
 echo -e "${BLUE}\n Install WiFi Realtek 8812AU/8821AU Driver   ${NC}";
 apt-get install -y linux-headers-$(uname -r) ;
@@ -407,7 +402,7 @@ explotation(){
 echo -e "${YELLOW}\nDownload Tools Explotation_Scalation_C&C. ${NC}"
 cd  /opt/Tools/$explotation/
 
-git clone https://$token@github.com/salvul/AutoSploit.git
+git clone https://$token@github.com/NullArray/AutoSploit.git
 git clone https://$token@github.com/Telefonica/ibombshell.git
 git clone https://$token@github.com/threat9/routersploit.git
 git clone https://$token@github.com/Pepelux/sippts.git
