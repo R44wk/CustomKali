@@ -419,6 +419,7 @@ git clone https://$token@github.com/mitre/caldera.git
 git clone https://$token@github.com/bdamele/icmpsh.git
 git clone https://$token@github.com/dafthack/MailSniper.git
 git clone https://$token@github.com/HavocFramework/Havoc.git
+git clone https://$token@github.com/p3nt4/Nuages.git
 
 echo -e "${YELLOW}\nZeroLogon${NC}"
 
@@ -449,6 +450,11 @@ git clone https://$token@github.com/weak1337/Alcatraz.git
 git clone https://$token@github.com/rasta-mouse/RuralBishop.git
 git clone --recursive https://github.com/klezVirus/inceptor.git
 git clone https://$token@github.com/xoreaxeaxeax/movfuscator
+git clone https://$token@github.com/the-xentropy/xencrypt.git
+git clone https://$token@github.com/CCob/SharpBlock.git
+git clone https://$token@github.com/danielbohannon/Invoke-Obfuscation.git
+git clone https://$token@github.com/hlldz/RefleXXion.git
+git clone https://$token@github.com/optiv/Mangle.git
 
 wget -O /opt/Tools/$evation/upx.tar.xz https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
 tar -xvf /opt/Tools/$evation/upx.tar.xz -C /opt/Tools/$evation/ && rm /opt/Tools/$evation/upx.tar.xz;
