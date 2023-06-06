@@ -163,7 +163,7 @@ wget https://$token@github.com/sharkdp/bat/releases/download/v0.18.1/bat_0.18.1_
 echo -e "${BLUE}\n rlwrap.  ${NC}"
 apt install rlwrap -y; 
 
-#Instal driver Wifi
+#Install driver Wifi
 echo -e "${BLUE}\n Install WiFi Realtek 8812AU/8821AU Driver   ${NC}";
 apt-get install -y linux-headers-$(uname -r) ;
 git clone https://$token@github.com/aircrack-ng/rtl8812au $track/rtl8812au;
@@ -409,7 +409,7 @@ git clone https://$token@github.com/Pepelux/sippts.git
 git clone https://$token@github.com/aress31/xmlrpc-bruteforcer.git
 git clone https://$token@github.com/trustedsec/unicorn.git
 git clone https://$token@github.com/offsecginger/koadic.git
-git clone --recurse-submodules https://$token@github.com/cobbr/Covenant.git
+git clone --recurse-submodules https://$token@github.com/ZeroPointSecurity/Covenant.git
 git clone https://$token@github.com/Ne0nd0g/merlin.git
 git clone https://$token@github.com/iagox86/dnscat2.git
 git clone https://$token@github.com/mandiant/SharPersist.git
