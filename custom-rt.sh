@@ -455,7 +455,7 @@ git clone https://$token@github.com/CCob/SharpBlock.git
 git clone https://$token@github.com/danielbohannon/Invoke-Obfuscation.git
 git clone https://$token@github.com/hlldz/RefleXXion.git
 git clone https://$token@github.com/optiv/Mangle.git
-
+git clone https://$token@github.com/mindcrypt/powerglot.git
 wget -O /opt/Tools/$evation/upx.tar.xz https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
 tar -xvf /opt/Tools/$evation/upx.tar.xz -C /opt/Tools/$evation/ && rm /opt/Tools/$evation/upx.tar.xz;
 
