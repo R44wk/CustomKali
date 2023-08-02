@@ -315,6 +315,7 @@ git clone https://$token@github.com/SharonBrizinov/s3viewer.git
 git clone https://$token@github.com/IvanGlinkin/Fast-Google-Dorks-Scan.git
 git clone https://$token@github.com/NetSPI/MicroBurst.git
 git clone https://$token@github.com/R44wk/CloudPeler.git
+git clone https://$token@github.com/BishopFox/spoofcheck.git
 }
 
 
