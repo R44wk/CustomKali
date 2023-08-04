@@ -488,26 +488,12 @@ git clone https://$token@github.com/IncideDigital/Mistica.git
 wifi(){
 
 
-echo -e "${YELLOW}\nInstall evilTrust.${NC}"
+echo -e "${YELLOW}\nDownload WiFi Tools${NC}"
 cd /opt/Tools/$WIFI
 git clone https://$token@github.com/s4vitar/evilTrust.git
-cd /opt/Tools/$WIFI/evilTrust; chmod +x evilTrust.sh
-
-echo -e "${YELLOW}\nInstall HT-WPS-Breaker.${NC}"
-cd /opt/Tools/$WIFI
 git clone https://$token@github.com/SilentGhostX/HT-WPS-Breaker.git
-cd /opt/Tools/$WIFI/HT-WPS-Breaker; chmod +x HT-WB.sh
-
-echo -e "${YELLOW}\nInstall Wifite2.${NC}"
-cd /opt/Tools/$WIFI
 git clone https://$token@github.com/derv82/wifite2.git
-
-echo -e "${YELLOW}\nInstall wirespy.${NC}"
-cd /opt/Tools/$WIFI
 git clone https://$token@github.com/aress31/wirespy.git
-cd /opt/Tools/$WIFI/wirespay; chmod +x wirespy.sh
-
-cd /opt/Tools/$WIFI
 git clone https://$token@github.com/vanhoefm/krackattacks-scripts.git krackattacks
 git clone https://$token@github.com/Telefonica/HomePWN.git
 git clone https://$token@github.com/R44wk/bluescan.git
@@ -623,11 +609,10 @@ delivery 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 explotation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 evation 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 exfiltration  2>>/home/$DANT/Downloads/CustomKali/errors.txt
-wifi 2>>/home/$DANT/Downloads/CustomKali/>errors.txt
+wifi 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 Dos 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 Incident 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 Framework 2>>/home/$DANT/Downloads/CustomKali/errors.txt
-
 echo -e "\n"
 nordvpn set dns 1.1.1.1 8.8.8.8 2>>errors.txt #set DNS in VPN
 echo -e "${BLUE}\nUpdating locate database.${NC}"
