@@ -316,6 +316,8 @@ git clone https://$token@github.com/IvanGlinkin/Fast-Google-Dorks-Scan.git
 git clone https://$token@github.com/NetSPI/MicroBurst.git
 git clone https://$token@github.com/R44wk/CloudPeler.git
 git clone https://$token@github.com/BishopFox/spoofcheck.git
+git clone https://$token@github.com/MattKeeley/Spoofy
+git clone https://$token@github.com/vysecurity/LinkedInt.git
 
 }
 
@@ -460,7 +462,7 @@ git clone https://$token@github.com/optiv/Mangle.git
 git clone https://$token@github.com/mindcrypt/powerglot.git
 wget -O /opt/Tools/$evation/upx.tar.xz https://github.com/upx/upx/releases/download/v4.0.2/upx-4.0.2-amd64_linux.tar.xz
 tar -xvf /opt/Tools/$evation/upx.tar.xz -C /opt/Tools/$evation/ && rm /opt/Tools/$evation/upx.tar.xz;
-
+git clone https://$token@github.com/mgeeky/PackMyPayload.git
 }
 
 
