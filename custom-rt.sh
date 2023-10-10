@@ -126,7 +126,6 @@ cd $track/
 apt install ./nordvpn.deb && apt update && apt install nordvpn
 rm $track/nordvpn.deb
 
-
 echo -e "${BLUE}\n Trensmission. 褐 ${NC}"
 apt install -y transmission;
 
@@ -189,6 +188,8 @@ apt install -y snapd;
 systemctl enable --now snapd apparmor;
 snap install core;
 snap install onionshare;snap remove onionshare;snap install onionshare
+sudo snap install nordpass
+
 
 echo -e "${BLUE}\n Install i2p.  ${NC}"
 docker pull geti2p/i2p;
