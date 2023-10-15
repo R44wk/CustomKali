@@ -201,7 +201,8 @@ alias sonarqube='docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 -v son
 #alias htb='openvpn /root/Documents/HTB/Rumpels.ovpn &'
 alias tor-browser='su r4wk -c "/home/r4wk/Desktop/tor-browser/start-tor-browser.desktop" &'
 alias update='apt -y update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -y autoclean ; apt -y full-upgrade; updatedb'
-
+alias i2p-plus='/usr/local/i2p/i2prouter start'
+alias covenant='docker start covenant -ai'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
