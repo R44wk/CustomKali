@@ -58,7 +58,7 @@ font-3 = Hack Nerd Font Mono:pixelsize=15;2
 
 modules-left = bspwm i3 memory date
 modules-center = ethernet wan vpn docker   
-modules-right = xwindow
+;modules-right = xwindow
 
 tray-position = right
 tray-padding = 2

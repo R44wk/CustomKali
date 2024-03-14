@@ -92,6 +92,9 @@ cp $track/tmux.conf.local /root/.tmux.conf.local
 cd /root && rm .zshrc && rm .tmux.conf.local
 ln -s -f /home/$DANT/.zshrc .zshrc && ln -s -f /home/$DANT/.tmux.conf.local .tmux.conf.local
 
+echo -e "${BLUE}\n Install GNOME Extension Manager 嬨  ${NC}"   # Install manual hide items, transparent top bar and  and top bar organizer
+apt install gnome-shell-extension-manager
+
 #Install powerlevel10k in root
 cd /root && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
@@ -137,15 +140,14 @@ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trust
 echo -e "${BLUE}\n Name-that-hash.  ${NC}"
 pip3 install name-that-hash
 
-
 echo -e "${BLUE}\n Install Docker.  ${NC}"
-apt-get remove docker docker-engine docker.io containerd runc;
+apt-get -y remove docker docker-engine docker.io containerd runc;
 apt install -y curl gnupg2 apt-transport-https software-properties-common ca-certificates;
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg;
 echo "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable" | sudo tee  /etc/apt/sources.list.d/docker.list;
 apt update;
 apt install -y docker-ce docker-ce-cli containerd.io;
-apt  install docker-compose
+apt  install -y docker-compose
 systemctl enable docker --now;
 
 #Install lsd
@@ -205,6 +207,9 @@ apt install -y vlc;
 
 echo -e "${BLUE}\n Install NSearch.  ${NC}"
 git clone https://$token@github.com/jtibaquira/nsearch.git /opt/NSearch;
+
+echo -e "${BLUE}\n SiCat - The useful exploit finder  ${NC}"
+git clone https://github.com/justakazh/sicat.git /opt/Sicat
 
 echo -e "${BLUE}\n Install VulnScan.  ${NC}"
 git clone https://$token@github.com/scipag/vulscan.git /usr/share/nmap/scripts/vulscan/;
