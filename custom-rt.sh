@@ -117,6 +117,9 @@ sleep 2
 #gdbus call --session --dest org.gnome.Shell --object-track /org/gnome/Shell --method org.gnome.Shell.Eval string:\'Main.panel.actor.hide();\'
 chmod +x /root/.config/polybar/bin/*.sh
 sleep 4
+curl https://github.com/beyondcode/expose/raw/master/builds/expose -L --output /opt/expose
+
+chmod +x /opt/expose
 
 #========================================================================================================================================================
 #                                                                      Misc.
