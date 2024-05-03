@@ -402,6 +402,9 @@ git clone https://$token@github.com/fin3ss3g0d/evilgophish.git
 git clone https://$token@github.com/mdsecactivebreach/o365-attack-toolkit.git
 git clone https://$token@github.com/mandiant/PwnAuth.git
 git clone https://$token@github.com/R44wk/mip22.git
+git clone https://$token@github.com/muraenateam/muraena.git
+git clone https://$token@github.com/drk1wi/Modlishka.git
+
 }
 
 
