@@ -205,6 +205,8 @@ alias i2p-plus='/usr/local/i2p/i2prouter start'
 alias covenant='docker start covenant -ai'
 alias freenet='/hom/r4wk/Freenet/run.sh'
 
+
+
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     . /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh

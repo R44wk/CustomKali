@@ -276,6 +276,11 @@ echo -e "${YELLOW}\n Install UberTooth.  ${NC}"
 
 #apt update && sudo apt install cmake libusb-1.0-0-dev git make gcc g++ libbluetooth-dev wget build-essential pkg-config python3-numpy python3-qtpy python3-distutils python3-setuptools wireshark wireshark-dev libwireshark-dev python3-protobuf python3-requests python3-numpy python3-serial python3-usb python3-dev python3-websockets librtlsdr0 libsqlite3-dev libprotobuf-dev libprotobuf-c-dev protobuf-compiler protobuf-c-compiler libsensors4-dev -y
 
+#Install Penelope Shell Interactive
+
+git clone https:$token@//github.com/brightio/penelope.git /opt/penelope/
+cp /opt/penelope/penelope.py /bin/penelope.py
+
 
 }
 

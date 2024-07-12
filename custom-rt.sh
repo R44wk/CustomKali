@@ -92,7 +92,7 @@ cp $track/tmux.conf.local /root/.tmux.conf.local
 cd /root && rm .zshrc && rm .tmux.conf.local
 ln -s -f /home/$DANT/.zshrc .zshrc && ln -s -f /home/$DANT/.tmux.conf.local .tmux.conf.local
 
-echo -e "${BLUE}\n Install GNOME Extension Manager 嬨  ${NC}"   # Install manual hide items, transparent top bar and  and top bar organizer
+echo -e "${BLUE}\n Install GNOME Extension Manager 嬨  ${NC}"   # Install: hide items, transparent top bar, hide top bar and top bar organizer
 apt install gnome-shell-extension-manager
 
 #Install powerlevel10k in root
@@ -152,6 +152,10 @@ apt update;
 apt install -y docker-ce docker-ce-cli containerd.io;
 apt  install -y docker-compose
 systemctl enable docker --now;
+
+#Install Penelope Shell Interactive
+
+git clone https://github.com/brightio/penelope.git
 
 #Install lsd
 echo -e "${BLUE}\n LSD.  ${NC}"
@@ -253,6 +257,10 @@ docker volume create sonarqube-extensions
 
 echo -e "${YELLOW}\n Install ADB-Tools.  ${NC}"
 apt install -y adb
+
+#Install Penelope Shell Interactive
+
+git clone https:$token@//github.com/brightio/penelope.git /opt/penelope
 
 }
 
