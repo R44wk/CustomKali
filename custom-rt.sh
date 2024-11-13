@@ -186,7 +186,7 @@ apt install gimp -y;
 echo -e "${BLUE}\n Install Remina.  ${NC}"
 apt-get install remmina -y;
 
-echo -e "${BLUE}\n Speddtest. 陋 ${NC}"
+echo -e "${BLUE}\n Speedtest. 陋 ${NC}"
 apt install -y speedtest-cli;
 
 echo -e "${BLUE}\n Install Tor. 﨩 ${NC}"
@@ -258,9 +258,8 @@ docker volume create sonarqube-extensions
 echo -e "${YELLOW}\n Install ADB-Tools.  ${NC}"
 apt install -y adb
 
-#Install Penelope Shell Interactive
-
-git clone https:$token@//github.com/brightio/penelope.git /opt/penelope
+echo -e "${BLUE}\n Install cs2modrewrite  ${NC}";
+git clone https://github.com/threatexpress/cs2modrewrite.git /opt/cs2modrewrite
 
 }
 
@@ -280,6 +279,7 @@ git clone https://$token@github.com/sense-of-security/ADRecon.git
 git clone https://$token@github.com/mattweidner/bucket_finder.git
 git clone https://$token@github.com/lobuhi/byp4xx.git
 git clone https://$token@github.com/christophetd/cloudflair.git
+git clone https://$token@github.com/gwen001/cloudflare-origin-ip
 git clone https://$token@github.com/greycatz/CloudUnflare.git
 git clone https://$token@github.com/D4Vinci/Cr3dOv3r.git
 git clone https://$token@github.com/ThoughtfulDev/EagleEye
@@ -638,6 +638,7 @@ Incident 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 Framework 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 echo -e "\n"
 nordvpn set dns 1.1.1.1 8.8.8.8 2>>errors.txt #set DNS in VPN
+nordvpn set lan-discovery on 2>>errors.txt
 echo -e "${BLUE}\nUpdating locate database.${NC}"
 updatedb 2>>/home/$DANT/Downloads/CustomKali/errors.txt
 sleep 2
