@@ -523,6 +523,7 @@ git clone https://$token@github.com/Telefonica/HomePWN.git
 git clone https://$token@github.com/R44wk/bluescan.git
 git clone https://$token@github.com/hash3liZer/WiFiBroot.git
 git clone https://$token@github.com/FluxionNetwork/fluxion.git
+gri clone https://$token@github.com/D3Ext/WEF.git
 
 echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
 apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
