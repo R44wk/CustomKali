@@ -89,7 +89,7 @@ cp $track/tmux.conf.local /root/.tmux.conf.local
 cd /root && rm .zshrc && rm .tmux.conf.local
 ln -s -f /home/$DANT/.zshrc .zshrc && ln -s -f /home/$DANT/.tmux.conf.local .tmux.conf.local
 #Config startship con un tema
-starship preset pastel-powerline -o ~/.config/starship.toml
+cp $track/startship.toml ~/.config/starship.toml
 
 echo -e "${BLUE}\n Install GNOME Extension Manager 嬨  ${NC}"   # Install: hide items, transparent top bar, hide top bar and top bar organizer
 apt install gnome-shell-extension-manager                      # agregar el repo 'deb http://deb.debian.org/debian stable main non-free-firmware' en el file sources.list
