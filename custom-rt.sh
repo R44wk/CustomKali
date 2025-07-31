@@ -70,13 +70,10 @@ apt -y update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y autoremove ; apt -
 
 system(){
 
-echo -e "${BLUE}\n PW-10K.  ${NC}"
-#Install powerlevel10k in user
-cd /home/$DANT/ && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git /home/$DANT/powerlevel10k
-sudo echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp $track/p10k.zsh /home/$DANT/.p10k.zsh
-#mv /home/$DANT/.zshrc /home/$DANT/zshrcBACKUP 
-cp $track/zshrc /home/$DANT/.zshrc
+echo -e "${BLUE}\n Starship.  ${NC}"
+#Install Startship in user
+curl -sS https://starship.rs/install.sh | sh
+
 sleep 2
 #Install Oh myTmux
 cd /home/$DANT/ && git clone https://$token@github.com/gpakosz/.tmux.git
@@ -91,16 +88,11 @@ cp $track/tmux.conf.local /root/.tmux.conf.local
 
 cd /root && rm .zshrc && rm .tmux.conf.local
 ln -s -f /home/$DANT/.zshrc .zshrc && ln -s -f /home/$DANT/.tmux.conf.local .tmux.conf.local
-
+#Config startship con un tema
+starship preset pastel-powerline -o ~/.config/starship.toml
 
 echo -e "${BLUE}\n Install GNOME Extension Manager 嬨  ${NC}"   # Install: hide items, transparent top bar, hide top bar and top bar organizer
 apt install gnome-shell-extension-manager                      # agregar el repo 'deb http://deb.debian.org/debian stable main non-free-firmware' en el file sources.list
-
-#Install powerlevel10k in root
-cd /root && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
-cp $track/p10k.zsh /root/.p10k.zsh
-cp $track/zshrc /root/.zshrc
 
 # Install POLYBAR
 echo -e "${BLUE}\n Install Polybar.  ${NC}";
