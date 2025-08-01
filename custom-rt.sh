@@ -513,7 +513,6 @@ git clone https://$token@github.com/ElectronicCats/CatSniffer-Tools.git
 echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
 apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
 npm install -g btlejuice
-
 }
 
 
