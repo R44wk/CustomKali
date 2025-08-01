@@ -120,10 +120,8 @@ chmod +x /opt/expose
 
 #Install NordVPN
 echo -e "${BLUE}\n Install NordVPN 嬨  ${NC}"
-wget -O $track/nordvpn.deb https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb?_ga=2.63514733.310161373.1623303705-1134963399.1623303705
-cd $track/
-apt install ./nordvpn.deb && apt update && apt install nordvpn
-rm $track/nordvpn.deb
+sh <(wget -qO - https://downloads.nordcdn.com/apps/linux/install.sh) -p nordvpn-gui
+
 
 echo -e "${BLUE}\n Trensmission. 褐 ${NC}"
 apt install -y transmission;
@@ -137,18 +135,12 @@ echo -e "${BLUE}\n Name-that-hash.  ${NC}"
 pip3 install name-that-hash
 
 echo -e "${BLUE}\n Install Docker.  ${NC}"
-apt-get -y remove docker docker-engine docker.io containerd runc;
-apt install -y curl gnupg2 apt-transport-https software-properties-common ca-certificates;
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-archive-keyring.gpg;
-echo "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable" | sudo tee  /etc/apt/sources.list.d/docker.list;
-apt update;
-apt install -y docker-ce docker-ce-cli containerd.io;
-apt  install -y docker-compose
+apt install -y docker-ce docker-ce-cli containerd.io docker-compose;
 systemctl enable docker --now;
 
 #Install Penelope Shell Interactive
 
-git clone https://github.com/brightio/penelope.git
+git clone https://github.com/brightio/penelope.git /usr/bin/penelope
 
 #Install lsd
 echo -e "${BLUE}\n LSD.  ${NC}"
@@ -177,7 +169,7 @@ echo -e "${BLUE}\n Install GIMP   ${NC}";
 apt install gimp -y;
 
 echo -e "${BLUE}\n Install Remina.  ${NC}"
-apt-get install remmina -y;
+apt install remmina remmina-plugin-rdp remmina-plugin-vnc remmina-plugin-secret -y
 
 echo -e "${BLUE}\n Speedtest. 陋 ${NC}"
 apt install -y speedtest-cli;
@@ -517,7 +509,7 @@ git clone https://$token@github.com/R44wk/bluescan.git
 git clone https://$token@github.com/hash3liZer/WiFiBroot.git
 git clone https://$token@github.com/FluxionNetwork/fluxion.git
 gri clone https://$token@github.com/D3Ext/WEF.git
-
+git clone https://$token@github.com/ElectronicCats/CatSniffer-Tools.git
 echo -e "${YELLOW}\nInstall BtleJuice Framework${NC}"
 apt-get -y install bluetooth bluez libbluetooth-dev libudev-dev
 npm install -g btlejuice

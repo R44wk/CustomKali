@@ -204,6 +204,7 @@ alias update='apt -y update ; apt -y upgrade ; apt -y dist-upgrade ; apt -y auto
 alias i2p-plus='/usr/local/i2p/i2prouter start'
 alias covenant='docker start covenant -ai'
 alias freenet='/hom/r4wk/Freenet/run.sh'
+alias penelope='/usr/bin/penelope/penelope.py'
 
 
 
