@@ -321,6 +321,7 @@ git clone https://$token@github.com/BishopFox/spoofcheck.git
 git clone https://$token@github.com/MattKeeley/Spoofy
 git clone https://$token@github.com/vysecurity/LinkedInt.git
 git clone https://$token@github.com/megadose/holehe.git
+git clone https://$token@github.com/MrpasswordTz/WAFHUNTER.git
 
 }
 
