@@ -205,7 +205,8 @@ alias i2p-plus='/usr/local/i2p/i2prouter start'
 alias covenant='docker start covenant -ai'
 alias freenet='/hom/r4wk/Freenet/run.sh'
 alias penelope='/usr/bin/penelope/penelope.py'
-
+alias upx='/opt/upx/build/release/upx' #update
+alias code='code --no-sandbox --user-data-dir /home/r4wk'
 
 
 # enable auto-suggestions based on the history
