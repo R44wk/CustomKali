@@ -19,7 +19,7 @@ evation="Defense_Evasion"
 exfiltration="Exfiltration"
 WIFI="WiFi_BLE"
 FRAMEWORK="Framework"
-token="3c8d9d9648b52aab168af651d2b43b0782715c34" 
+token="" 
 track=$(pwd)
 
 
