@@ -19,7 +19,7 @@ evation="Defense_Evasion"
 exfiltration="Exfiltration"
 WIFI="WiFi_BLE"
 FRAMEWORK="Framework"
-token="" 
+token=""
 track=$(pwd)
 
 
@@ -57,8 +57,8 @@ done
 
 echo -e "\n=========================================================================================================\n"
 sleep 2
-read -p "Enter your username:~# " DANT
-#read -p "Enter your APIKey Github:~# " token
+read -p " Enter your username:~# " DANT
+read -p " Enter your APIKey Github:~# " token
 
 echo -e "${BLUE}\n Upgrade Arch-Linux.  ${NC}"
 sudo pacman -Syu --noconfirm && sudo pacman -Rns $(pacman -Qdtq 2>/dev/null) --noconfirm 2>/dev/null && sudo pacman -Scc --noconfirm && sudo updatedb
@@ -69,33 +69,88 @@ sudo pacman -Syu --noconfirm && sudo pacman -Rns $(pacman -Qdtq 2>/dev/null) --n
 
 system(){
 
+
+# Kernel optimizado (ya viene con CachyOS)
+sudo pacman -S --noconfirm linux-cachyos linux-cachyos-headers
+# Microcódigo AMD actualizado
+sudo pacman -S --noconfirm amd-ucode
+# Herramientas de monitoreo
+sudo pacman -S --noconfirm htop neofetch hardinfo cpupower-gui radeontop
+# Drivers gráficos AMD (ROCM para desarrollo)
+sudo pacman -S --noconfirm mesa vulkan-radeon lib32-mesa lib32-vulkan-radeon
+sudo pacman -S --noconfirm gamemode lib32-gamemode
+sudo pacman -S --noconfirm rocm-hip-sdk rocm-opencl-sdk
+# Instalar y configurar cpupower
+sudo cpupower frequency-set -g performance
+# Crear servicio para profile performance
+sudo systemctl enable cpupower
+sudo systemctl start cpupower
+# Instalar herramientas
+sudo pacman -S --noconfirm dmidecode
+# Verificar timing RAM
+sudo dmidecode -t memory
+# ZRAM para desarrollo con VMs
+sudo pacman -S --noconfirm zram-generator
+sudo systemctl enable systemd-zram-setup@zram0
+sudo cpupower frequency-set -g performance
+echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+# Priorizar núcleos CCD0 (mejor single-core)
+sudo cpupower -c 0-7 frequency-set -g performance
+
+sudo pacman -S --noconfirm gnome-shell-extensions
+
+#Configurar VM con QEMU/KVM optimizado
+sudo pacman -S --noconfirm qemu-full virt-manager virt-viewer edk2-ovmf dnsmasq ebtables iptables
+sudo systemctl enable --now libvirtd
+sudo virsh net-autostart default
+# Panel de control personalizado con conky
+sudo pacman -S --noconfirm conky
+
+sudo systemctl enable --now cpupower
+sudo systemctl enable --now libvirtd
+sudo systemctl enable --now nftables
+
+
+pacman -S --noconfirm base-devel
 sudo pacman -S --needed --noconfirm dkms
+sudo pacman -S --needed --noconfirm yay
 
-echo -e "${BLUE}\n Starship.  ${NC}"
-#Install Startship in user
-curl -sS https://starship.rs/install.sh | sh;
-#Config startship con un tema
-cp $track/startship.toml ~/.config/starship.toml;
-
+sudo pacman -S --needed --noconfirm tmux
 sleep 2
-#Install tmux and Oh myTmux
-sudo pacman -S --noconfirm tmux;
-cd /home/$DANT/ && git clone https://$token@github.com/gpakosz/.tmux.git;
-ln -s -f .tmux/.tmux.conf;
-cp .tmux/.tmux.conf.local .;
-cp $track/tmux.conf.local /home/$DANT/.tmux.conf.local;
+#Install Oh myTmux
+cd /home/$DANT/ && git clone https://$token@github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+cp $track/tmux.conf.local /home/$DANT/.tmux.conf.local
+#Install Oh myTmux in root user
+cd /root && git clone https://$token@github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+cp $track/tmux.conf.local /root/.tmux.conf.local
+
+#Install PW10K
+echo -e "${BLUE}\n PW-10K.  ${NC}"
+cd /home/$DANT/ && git clone --depth=1 https://$token@github.com/romkatv/powerlevel10k.git /home/$DANT/powerlevel10k
+sudo echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc # && zsh
+cp $track/p10k.zsh /home/$DANT/.p10k.zsh
 
 
 # Install POLYBAR
 echo -e "${BLUE}\n Install Polybar.  ${NC}";
-sudo pacman -S --noconfirm polybar;
+apt install -y build-essential git cmake cmake-data pkg-config python3-sphinx python3-packaging libcairo2-dev libxcb1-dev libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev;
+apt install -y libxcb-xkb-dev libxcb-xrm-dev libxcb-cursor-dev libasound2-dev libpulse-dev i3-wm libjsoncpp-dev libmpdclient-dev libcurl4-openssl-dev libnl-genl-3-dev;
+#wget -P /opt/ https://github.com/polybar/polybar/releases/download/3.5.6/polybar-3.5.6.tar.gz
+#tar -xf /opt/polybar-3.5.6.tar.gz -C /opt/ #&& rm /opt/polybar-3.5.6.tar.gz && cd /opt/polybar-3.5.6
+#mkdir build; cd /opt/polybar-3.5.6/build && cmake ..; make -j$(nproc); make install
+apt install -y polybar && apt install -y gnome-shell-extension-autohidetopbar;
 sleep 1
-#cp  -r $track/polybar /home/$DANT/.config/  2>>$track/errors.txt;
-#chmod 777 /home/$DANT/.config/polybar/launch.sh  2>>$track/errors.txt && 
-#cp /home/$DANT/.config/polybar/launch.sh /usr/bin/polybar.sh && ./polybar.sh 2>/dev/null &
-#sleep 2
-#chmod +x /home/$DANT/.config/polybar/bin/*.sh;
-#sleep 4
+cp  -r $track/polybar /root/.config/polybar 2>>$track/errors.txt && cp -r $track/polybar /home/$DANT/.config/polybar  2>>$track/errors.txt;
+cp /root/.config/polybar/launch.sh /etc/init.d/  2>>$track/errors.txt && chmod 777 /etc/init.d/launch.sh  2>>$track/errors.txt && update-rc.d launch.sh defaults  2>>$track/errors.txt;
+sleep 2
+/etc/init.d/launch.sh start 2>/dev/null;
+#gdbus call --session --dest org.gnome.Shell --object-track /org/gnome/Shell --method org.gnome.Shell.Eval string:\'Main.panel.actor.hide();\'
+chmod +x /root/.config/polybar/bin/*.sh
+sleep 4
 
 
 #Install Expose
@@ -106,17 +161,7 @@ chmod +x /opt/expose;
 #Install Python
 sudo pacman -Sy --noconfirm python python-pip;
 
-echo -e "${BLUE}\n Install Headers Kernel.  ${NC}";
-kernel=$(uname -r)
-if [[ "$kernel" == *cachyos* ]]; then
-    sudo pacman -S --needed --noconfirm linux-cachyos-headers
-elif [[ "$kernel" == *lts* ]]; then
-    sudo pacman -S --needed --noconfirm linux-lts-headers
-elif [[ "$kernel" == *zen* ]]; then
-    sudo pacman -S --needed --noconfirm linux-zen-headers
-else
-    sudo pacman -S --needed --noconfirm linux-headers
-fi
+
 
 #========================================================================================================================================================
 #                                                                      Misc.
@@ -200,6 +245,10 @@ echo -e "${YELLOW}\nInstall PEDA + EDB. ${NC}"
 #Install ADB-Tools Android
 echo -e "${YELLOW}\n Install ADB-Tools.  ${NC}"
 sudo pacman -S --noconfirm android-tools
+
+#Install Workstation
+echo -e "${YELLOW}\n Install VmWare-Workstation.  ${NC}"
+yay -S vmware-workstation vmware-workstation-systemd
 }
 
 ###############################################################################################################################
